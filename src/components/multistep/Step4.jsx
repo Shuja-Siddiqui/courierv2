@@ -20,7 +20,7 @@ const Step4 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
   const databaseOptions = dbType === "SQL" ? sqlDatabases : noSqlDatabases;
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">
         Knowledge Base Connection
       </h2>
 
@@ -115,7 +115,7 @@ const Step4 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
       </button>
       <button
         onClick={nextStep}
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Next
       </button>

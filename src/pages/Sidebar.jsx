@@ -1,72 +1,185 @@
-import React from "react";
-import { FaTasks, FaCog, FaClipboardList, FaSearch } from "react-icons/fa";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaRegQuestionCircle,
+} from "react-icons/fa";
+import { normallogo } from "../assets/images";
+import { CiHome } from "react-icons/ci";
+import { BiDiamond } from "react-icons/bi";
+import { PiChartPieSliceLight, PiFileDashedFill } from "react-icons/pi";
+import { AiFillTool } from "react-icons/ai";
+import { RiSettings5Fill } from "react-icons/ri";
+
 const Sidebar = () => {
+  const [isWorkflowOpen, setIsWorkflowOpen] = useState(false);
+
+  const toggleWorkflow = () => {
+    setIsWorkflowOpen(!isWorkflowOpen);
+  };
+
   return (
-    <div className="h-[100vh] bg-gray-900 text-white flex flex-col">
-      <div className="text-center p-4 border-b border-gray-700">
-        <h1 className="text-2xl font-bold">Normal Logistics</h1>
+    <div className="h-[100vh] w-[15%] bg-black text-white flex flex-col">
+      <div className="flex justify-center items-center px-5">
+        <div className="flex h-[10px] w-full items-center gap-2 text-start px-4 py-5 mt-[25px] rounded-lg bg-gradient-to-br from-background to-gray-500 shadow-lg">
+          <img src={normallogo} alt="Logo" className="object-fill" />
+          <h1 className="text-[15px] font-bold">Normal Logistics</h1>
+        </div>
       </div>
       <div className="p-4 flex-1">
         <div className="mb-4">
-          <h2 className="text-gray-500 uppercase text-sm">Overview</h2>
           <div className="mt-2">
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaTasks />
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                  : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+              }
+            >
+              <CiHome size={25} />
               <span>Overview</span>
-            </div>
+            </NavLink>
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-gray-500 uppercase text-sm">Agents</h2>
           <div className="mt-2">
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaCog />
+            <NavLink
+              to="/agents"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                  : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+              }
+            >
+              <BiDiamond size={25} />
               <span>Agents</span>
-            </div>
+            </NavLink>
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-gray-500 uppercase text-sm">Knowledge Base</h2>
           <div className="mt-2">
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaClipboardList />
+            <NavLink
+              to="/knowledge-base"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                  : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+              }
+            >
+              <PiFileDashedFill size={25} />
               <span>Knowledge Base</span>
-            </div>
+            </NavLink>
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-gray-500 uppercase text-sm">Workflows</h2>
           <div className="mt-2">
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaSearch />
-              <span>Monitor</span>
+            <NavLink
+              to="/actions-tools"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                  : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+              }
+            >
+              <AiFillTool size={25} />
+              <span>Actions & Tools</span>
+            </NavLink>
+          </div>
+        </div>
+        <div className="mb-4">
+          <div className="mt-2">
+            <div
+              className="flex items-center justify-between space-x-2 p-2 hover:bg-gray-700 rounded cursor-pointer"
+              onClick={toggleWorkflow}
+            >
+              <div className="flex items-center space-x-2 ">
+                <PiChartPieSliceLight className="rotate-90" size={25} />
+                <span>Workflows</span>
+              </div>
+              {isWorkflowOpen ? <FaChevronUp /> : <FaChevronDown />}
             </div>
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaSearch />
-              <span>Workflow Library</span>
-            </div>
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaSearch />
-              <span>Approvals & Flows</span>
-            </div>
-            <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-              <FaSearch />
-              <span>Task History</span>
-            </div>
+            {isWorkflowOpen && (
+              <div className="relative">
+                <div className="absolute left-2 h-full border-l-2 border-gray-700"></div>
+                <div className="">
+                  <NavLink
+                    to="/monitor"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                    }
+                  >
+                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                    <span>Monitor</span>
+                  </NavLink>
+                  <NavLink
+                    to="/workflow-library"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                    }
+                  >
+                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                    <span>Workflow Library</span>
+                  </NavLink>
+                  <NavLink
+                    to="/approvals-flows"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                    }
+                  >
+                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                    <span>Approvals & Flows</span>
+                  </NavLink>
+                  <NavLink
+                    to="/task-history"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                    }
+                  >
+                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                    <span>Task History</span>
+                  </NavLink>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
       <div className="p-4 border-t border-gray-700">
-        <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-          <FaCog />
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+              : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+          }
+        >
+          <RiSettings5Fill size={25} />
           <span>Settings</span>
-        </div>
-        <div className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded">
-          <FaSearch />
+        </NavLink>
+        <NavLink
+          to="/professional-services"
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+              : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+          }
+        >
+          <FaRegQuestionCircle size={25} />
           <span>Professional Services</span>
-        </div>
+        </NavLink>
       </div>
     </div>
   );
 };
+
 export default Sidebar;

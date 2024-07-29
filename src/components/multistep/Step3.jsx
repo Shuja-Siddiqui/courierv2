@@ -7,7 +7,7 @@ const Step3 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
     "You are an agent providing support for a logistics company known as Raven Force. You have access to a Knowledge Base (KB) containing all customer order information. Your task is to respond to customer inquiries based on this data. Ensure that your responses are accurate and confidential, so no customer information is shared or reviewed by others.";
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">
         Edit Pre-built Prompt
       </h2>
       <textarea
@@ -30,7 +30,7 @@ const Step3 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
       </button>
       <button
         onClick={nextStep}
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Next
       </button>

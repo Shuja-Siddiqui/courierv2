@@ -12,7 +12,7 @@ export default function SimpleCard({ data, isSelected, onSelect }) {
           {isSelected ? "Selected" : "Select"}
         </button>
       </div>
-      <h2 className="text-2xl font-bold mb-6 text-center">{data.title}</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">{data.title}</h2>
 
       <br />
       <p className="text-gray-400">{data.body}</p>
