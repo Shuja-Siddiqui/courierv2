@@ -21,7 +21,7 @@ export default function ManageAgent() {
   };
 
   return (
-    <div className="h-[670px] bg-background p-4">
+    <div className="h-[685px] bg-background p-4">
       <div className="w-full flex ">
         <button
           onClick={openModal}

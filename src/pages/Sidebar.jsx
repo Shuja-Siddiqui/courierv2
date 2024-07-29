@@ -3,20 +3,27 @@ import { NavLink } from "react-router-dom";
 import {
   FaChevronDown,
   FaChevronUp,
+  FaHistory,
   FaRegQuestionCircle,
+  FaUser,
 } from "react-icons/fa";
 import { normallogo } from "../assets/images";
 import { CiHome } from "react-icons/ci";
 import { BiDiamond } from "react-icons/bi";
 import { PiChartPieSliceLight, PiFileDashedFill } from "react-icons/pi";
 import { AiFillTool } from "react-icons/ai";
-import { RiSettings5Fill } from "react-icons/ri";
+import { RiCustomerService2Fill, RiSettings5Fill } from "react-icons/ri";
+import { FaBots } from "react-icons/fa6";
 
 const Sidebar = () => {
   const [isWorkflowOpen, setIsWorkflowOpen] = useState(false);
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
 
   const toggleWorkflow = () => {
     setIsWorkflowOpen(!isWorkflowOpen);
+  };
+  const toggleSupport = () => {
+    setIsSupportOpen(!isSupportOpen);
   };
 
   return (
@@ -56,6 +63,49 @@ const Sidebar = () => {
               <BiDiamond size={25} />
               <span>Agents</span>
             </NavLink>
+          </div>
+        </div>
+        <div className="mb-4">
+          <div className="mt-2">
+            <div
+              className="flex items-center justify-between space-x-2 p-2 hover:bg-gray-700 rounded cursor-pointer"
+              onClick={toggleSupport}
+            >
+              <div className="flex items-center space-x-2 ">
+                <RiCustomerService2Fill size={25} />
+                <span>Support Bots</span>
+              </div>
+              {isSupportOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </div>
+            {isSupportOpen && (
+              <div className="relative">
+                <div className="absolute left-2 h-full border-l-2 border-gray-700"></div>
+                <div className="">
+                  <NavLink
+                    to="/chat-history"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                    }
+                  >
+                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                    <FaHistory /><span>Chat History</span>
+                  </NavLink>
+                  <NavLink
+                    to="/suport"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                    }
+                  >
+                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                    <FaUser/><span>Support</span>
+                  </NavLink>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="mb-4">

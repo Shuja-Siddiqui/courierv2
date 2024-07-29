@@ -4,6 +4,9 @@ import Topbar from "./pages/Topbar";
 import Monitor from "./pages/Monitor";
 import Sidebar from "./pages/Sidebar";
 import ManageAgent from "./pages/ManageAgent";
+import ChTable from "./components/chathistory/ChTable";
+import ChatHistory from "./pages/ChatHistory";
+import Support from "./pages/Support";
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Monitor />} />
             <Route path="/agents" element={<ManageAgent />} />
+            <Route path="/chat-history" element={<ChatHistory />} />
+            <Route path="/support" element={<Support />} />
           </Routes>
         </div>
       </div>
