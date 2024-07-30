@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 import Step6 from "./Step6";
+import { selectAgentDetails, setAgentData } from "../../redux/agentSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectConfirm, setFalse } from "../../redux";
 
 const MultiStepForm = ({
   formData,
@@ -12,8 +15,14 @@ const MultiStepForm = ({
   emailData,
   setEmailData,
   onClose,
+  loader,
+  openConfirm,
+  confirmModalOpen,
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const dispatch = useDispatch();
+  const confirm = useSelector(selectConfirm);
+  const agents = useSelector(selectAgentDetails);
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -31,29 +40,65 @@ const MultiStepForm = ({
     setEmailData({ ...emailData, [input]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
+  const handleSubmit = async () => {
     setCurrentStep(6);
     formData.status = "Active";
-    onClose();
+    openConfirm();
+    // onClose();
   };
+
+  useEffect(() => {
+    if (confirm) {
+      const data = agents === null ? [] : agents;
+      const newArray = [...data, formData];
+      dispatch(setAgentData(newArray));
+      setFormData({
+        agentName: "",
+        agentDescription: "",
+        agentType: "",
+        workFlow: "",
+        prompt: "",
+        kbType: "",
+        deployType: "",
+        status: "",
+      });
+      onClose();
+      loader();
+      dispatch(setFalse());
+    }
+  }, [confirmModalOpen]);
 
   const renderStepIndicator = () => (
     <div className="flex justify-center items-center mb-6">
-      {[1, 2, 3, 4, 5, 6].map((step) => (
-        <div key={step} className="flex items-center">
-          <div
-            className={`w-8 h-8 flex justify-center items-center rounded-full ${
-              currentStep === step
-                ? "bg-gray-900 text-white"
-                : "bg-gray-200 text-gray-500"
-            }`}
-          >
-            {step}
-          </div>
-          {step < 6 && <div className="w-10 h-1 bg-gray-300"></div>}
-        </div>
-      ))}
+      {formData?.agentType === "Audit"
+        ? [1, 2, 3, 4, 5].map((step) => (
+            <div key={step} className="flex items-center">
+              <div
+                className={`w-8 h-8 flex justify-center items-center rounded-full ${
+                  currentStep === step
+                    ? "bg-gray-900 text-white"
+                    : "bg-gray-200 text-gray-500"
+                }`}
+              >
+                {step}
+              </div>
+              {step < 5 && <div className="w-10 h-1 bg-gray-300"></div>}
+            </div>
+          ))
+        : [1, 2, 3, 4, 5, 6].map((step) => (
+            <div key={step} className="flex items-center">
+              <div
+                className={`w-8 h-8 flex justify-center items-center rounded-full ${
+                  currentStep === step
+                    ? "bg-gray-900 text-white"
+                    : "bg-gray-200 text-gray-500"
+                }`}
+              >
+                {step}
+              </div>
+              {step < 6 && <div className="w-10 h-1 bg-gray-300"></div>}
+            </div>
+          ))}
     </div>
   );
 
@@ -103,6 +148,7 @@ const MultiStepForm = ({
           handleEmail={handleEmail}
           emailData={emailData}
           values={formData}
+          setFormData={setFormData}
         />
       )}
 
