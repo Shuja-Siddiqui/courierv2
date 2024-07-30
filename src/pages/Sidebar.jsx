@@ -14,10 +14,13 @@ import { PiChartPieSliceLight, PiFileDashedFill } from "react-icons/pi";
 import { AiFillTool } from "react-icons/ai";
 import { RiCustomerService2Fill, RiSettings5Fill } from "react-icons/ri";
 import { FaBots } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import { selectAgentDetails } from "../redux/agentSlice";
 
 const Sidebar = ({ data }) => {
   const [isWorkflowOpen, setIsWorkflowOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const agents = useSelector(selectAgentDetails);
 
   const toggleWorkflow = () => {
     setIsWorkflowOpen(!isWorkflowOpen);
@@ -65,7 +68,7 @@ const Sidebar = ({ data }) => {
             </NavLink>
           </div>
         </div>
-        {data === "Active" ? (
+        {agents && agents.length > 0 && agents[0]?.status === "Active" ? (
           <div className="mb-4">
             <div className="mt-2">
               <div

@@ -130,7 +130,7 @@ export default function Step6({
           onClick={handleSubmit}
           className="bg-white text-black font-medium rounded py-2 px-4"
         >
-          Submit
+          Deploy
         </button>
       </div>
     </>

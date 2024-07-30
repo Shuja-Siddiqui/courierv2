@@ -9,6 +9,7 @@ const Step5 = ({
   handleEmail,
   emailData,
   nextStep,
+  setFormData,
 }) => {
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
@@ -23,8 +24,16 @@ const Step5 = ({
     }));
   };
 
+  const updateDeployType = () => {
+    setFormData((prevValues) => ({
+      ...prevValues,
+      deployType: selectedConnections,
+    }));
+  };
+
   useEffect(() => {
-    values.deployType = selectedConnections;
+    // values.deployType = selectedConnections;
+    updateDeployType();
   }, [selectedConnections]);
 
   const codeSnippet = `
@@ -316,12 +325,21 @@ const Step5 = ({
       >
         Prev
       </button>
-      <button
-        onClick={nextStep}
-        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Next
-      </button>
+      {values?.agentType === "Audit" ? (
+        <button
+          onClick={handleSubmit}
+          className="bg-white text-black font-medium rounded py-2 px-4"
+        >
+          Deploy
+        </button>
+      ) : (
+        <button
+          onClick={nextStep}
+          className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Next
+        </button>
+      )}
     </>
   );
 };

@@ -10,6 +10,7 @@ import TicketDetail from "./components/table/TicketDetail";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
+import SupportTicket from "./components/support/SupportTicket";
 
 function App() {
   const [data, setData] = useState("");
@@ -40,10 +41,11 @@ function App() {
                       />
                       <Route path="/chat-history" element={<ChatHistory />} />
                       <Route path="/support" element={<Support />} />
-                      <Route
+                      <Route path="support/ticket" element={<SupportTicket />} />
+                      {/* <Route
                         path="/support/ticket/:id"
                         element={<TicketDetail />}
-                      />
+                      /> */}
                     </Routes>
                   </div>
                 </div>
