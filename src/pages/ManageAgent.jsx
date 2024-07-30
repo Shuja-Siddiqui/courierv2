@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MultiStepForm from "../components/multistep/MultiStepForm";
 import { RiRobot3Line } from "react-icons/ri";
 import Modal from "../components/multistep/Modal";
+import AgentTable from "../components/table/AgentTable";
 
-export default function ManageAgent() {
+export default function ManageAgent({ onDataChange }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     agentName: "",
     agentDescription: "",
     agentType: "",
+    workFlow: "",
     prompt: "",
     kbType: "",
+    deployType: "",
+    status: "",
   });
+  const [emailData, setEmailData] = useState({
+    email: "",
+    password: "",
+    iMap: "",
+  });
+
+  const data = [formData];
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -20,6 +31,10 @@ export default function ManageAgent() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    onDataChange(formData?.status);
+  }, [formData?.status]);
 
   return (
     <div className="h-[685px] bg-background p-4">
@@ -31,8 +46,18 @@ export default function ManageAgent() {
           <RiRobot3Line /> Add
         </button>
       </div>
+
+      <div>
+        <AgentTable data={data} />
+      </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <MultiStepForm formData={formData} setFormData={setFormData} />
+        <MultiStepForm
+          formData={formData}
+          setFormData={setFormData}
+          emailData={emailData}
+          setEmailData={setEmailData}
+          onClose={closeModal}
+        />
       </Modal>
     </div>
   );

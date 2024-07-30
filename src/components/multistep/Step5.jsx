@@ -15,6 +15,10 @@ const Step5 = ({ values, prevStep, handleSubmit, handleChange }) => {
     }));
   };
 
+  useEffect(() => {
+    values.deployType = selectedConnections;
+  }, [selectedConnections]);
+
   const codeSnippet = `
     <!-- Chatbot Button -->
 <div id="chatbot-button" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
@@ -279,10 +283,10 @@ const Step5 = ({ values, prevStep, handleSubmit, handleChange }) => {
         Prev
       </button>
       <button
-        onClick={handleSubmit}
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={nextStep}
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
-        Submit
+        Next
       </button>
     </>
   );
