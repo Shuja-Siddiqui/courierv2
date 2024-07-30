@@ -43,7 +43,7 @@ const AverageCard = () => {
 
       {/* 2 */}
       <div className="p-4 bg-gray-800 shadow-lg shadow-gray-700 hover:scale-105 border-[2px] border-gray-800 rounded-lg">
-        <div className="text-xl font-bold text-white">User Feedbacks</div>
+        <div className="text-xl font-bold text-white">Feedback Score</div>
         <div className="text-2xl font-semibold text-white mt-2">6.5</div>
         <div className="mt-2">
           <div className={"w-full flex gap-3 text-sm text-green-500"}>
@@ -63,7 +63,7 @@ const AverageCard = () => {
 
       {/* 3 */}
       <div className="p-4 bg-gray-800 shadow-lg shadow-gray-700 hover:scale-105 border-[2px] border-gray-800 rounded-lg">
-        <div className="text-xl font-bold text-white">Number Of Email Bot</div>
+        <div className="text-xl font-bold text-white">Number Of Workflows</div>
         <div className="text-2xl font-semibold text-white mt-2">200</div>
         <div className="mt-2">
           <div className={"w-full flex gap-3 text-sm text-green-500"}>

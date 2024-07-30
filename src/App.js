@@ -28,7 +28,7 @@ function App() {
           element={
             <ProtectedRoute
               element={
-                <div className="flex">
+                <div className="flex bg-black">
                   <Sidebar data={data} />
                   <div className="flex-1 flex flex-col">
                     <Topbar />

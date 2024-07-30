@@ -13,7 +13,7 @@ function TaskHistory() {
   return (
     <div className="w-[20%] p-4 bg-gray-800 text-white rounded-3xl shadow-md">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Email Updates</h2>
+        <h2 className="text-xl font-bold">Task History</h2>
         <select className="text-white rounded-md bg-gray-700 p-1">
           <option>Select date</option>
           {/* Add more options as needed */}
