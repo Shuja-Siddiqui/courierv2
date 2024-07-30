@@ -21,7 +21,10 @@ function App() {
             <Route path="/agents" element={<ManageAgent />} />
             <Route path="/chat-history" element={<ChatHistory />} />
             <Route path="/support" element={<Support />} />
-            <Route path="/support/ticket/:id" element={<TicketDetail />} />
+            <Route
+              path="/support/ticket-detail"
+              element={<TicketDetail />}
+            />
           </Routes>
         </div>
       </div>

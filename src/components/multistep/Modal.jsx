@@ -10,14 +10,11 @@ const Modal = ({ isOpen, onClose, children }) => {
   };
 
   return (
-    <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
-      onClick={handleOverlayClick}
-    >
-      <div className="w-[85%] max-h-[80vh] bg-gray-800 rounded-lg shadow-lg p-6 relative overflow-y-auto ">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="w-[100%] h-[90vh] bg-gray-800 rounded-lg shadow-lg py-6 px-8 relative">
         <button
           onClick={onClose}
-          className="absolute top-0 right-4  text-3xl text-red-600 hover:text-red-800"
+          className="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-white text-3xl"
         >
           &times;
         </button>

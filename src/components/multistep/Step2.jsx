@@ -74,13 +74,6 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
         Select a Workflow Type
       </h2>
 
-      {/*  */}
-      {/* <div className="w-full flex gap-4 mb-8">
-        {statusData.map((data, index) => (
-          <StatusCard key={index} {...data} />
-        ))}
-      </div> */}
-
       <div className="mb-4">
         <div className="relative">
           <select
@@ -115,16 +108,20 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
           </div>
         </div>
       </div>
-
-      <div className="w-full flex gap-4 mb-8">
-        {card.map((data, index) => (
-          <SimpleCard
-            data={data}
-            isSelected={selectedCardId === index}
-            onSelect={() => handleSelect(index)}
-          />
-        ))}
-      </div>
+      {values.agentType === "Support" ? (
+        <div className="w-full flex gap-4 mb-8">
+          {card.map((data, index) => (
+            <SimpleCard
+              key={index}
+              data={data}
+              isSelected={selectedCardId === index}
+              onSelect={() => handleSelect(index)}
+            />
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
 
       <button
         onClick={prevStep}

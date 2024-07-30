@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Step4 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
+const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
   const [dbType, setDbType] = useState("");
   const [connectionType, setConnectionType] = useState("Database");
 
@@ -25,7 +25,7 @@ const Step4 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
       </h2>
 
       <div className="mb-4 flex flex-col justify-start gap-2">
-        <label className="mr-4">
+        <label className="mr-4 text-white">
           <input
             type="checkbox"
             checked={connectionType === "Database"}
@@ -34,7 +34,7 @@ const Step4 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
           />
           Database
         </label>
-        <label>
+        <label className="text-white">
           <input
             type="checkbox"
             checked={connectionType === "File"}
