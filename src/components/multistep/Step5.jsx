@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WorkFlowSelector from "../WorkFlowSelector";
 
-const Step5 = ({ values, prevStep, handleSubmit, handleChange }) => {
+const Step5 = ({
+  values,
+  prevStep,
+  handleChange,
+  handleSubmit,
+  handleEmail,
+  emailData,
+  nextStep,
+}) => {
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
     Email: false,
@@ -250,8 +258,34 @@ const Step5 = ({ values, prevStep, handleSubmit, handleChange }) => {
 
           <div className="w-full flex justify-center">
             {selectedConnections.Email === true && (
-              <div className="text-white flex space-x-4 p-6 bg-gray-800 rounded-lg">
-                Please Select Email
+              <div className="text-white flex flex-col p-6 bg-gray-800 rounded-lg">
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    placeholder="Enter Email"
+                    value={emailData.agentName}
+                    onChange={handleEmail("email")}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    placeholder="Enter Password"
+                    value={emailData.password}
+                    onChange={handleEmail("password")}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    placeholder="Enter I-Map"
+                    value={emailData.iMap}
+                    onChange={handleEmail("iMap")}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
               </div>
             )}
           </div>
