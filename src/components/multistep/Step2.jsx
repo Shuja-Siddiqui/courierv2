@@ -70,25 +70,43 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
   const agentNames = ["Support", "Sales", "Finance", "Audit", "Bidder"];
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">
         Select a Workflow Type
       </h2>
 
       <div className="mb-4">
-        <select
-          value={values.agentType}
-          onChange={handleChange("agentType")}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        >
-          <option value="" disabled>
-            Select a Agent
-          </option>
-          {agentNames.map((agent, index) => (
-            <option key={index} value={agent}>
-              {agent}
+        <div className="relative">
+          <select
+            value={values.agentType}
+            onChange={handleChange("agentType")}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
+          >
+            <option value="" disabled>
+              Select a Agent
             </option>
-          ))}
-        </select>
+            {agentNames.map((agent, index) => (
+              <option key={index} value={agent}>
+                {agent}
+              </option>
+            ))}
+          </select>
+          <div className="absolute top-0 right-0 h-full flex items-center pr-2 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </div>
+        </div>
       </div>
       {values.agentType === "Support" ? (
         <div className="w-full flex gap-4 mb-8">
@@ -113,7 +131,7 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
       </button>
       <button
         onClick={nextStep}
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Next
       </button>

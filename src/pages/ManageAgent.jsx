@@ -21,17 +21,17 @@ export default function ManageAgent() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
-    <div className="h-[100vh] bg-gray-800">
-      <div className="w-full flex justify-end">
+    <div className="h-[685px] bg-background p-4">
+      <div className="w-full flex ">
         <button
           onClick={openModal}
-          className="flex items-center gap-2 bg-white rounded-xl px-5 py-4 shadow-2xl text-gray-700 font-manrope "
+          className="flex items-center gap-2 bg-white rounded-xl px-5 py-4 shadow-2xl text-gray-700 font-manrope"
         >
           <RiRobot3Line /> Add
         </button>
       </div>
-      <div>{/* <DynamicTable columns={columns} data={data} /> */}</div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <MultiStepForm formData={formData} setFormData={setFormData} />
       </Modal>

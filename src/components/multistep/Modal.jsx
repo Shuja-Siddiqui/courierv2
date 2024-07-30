@@ -3,6 +3,12 @@ import React from "react";
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="w-[100%] h-[90vh] bg-gray-800 rounded-lg shadow-lg py-6 px-8 relative">

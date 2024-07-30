@@ -3,7 +3,7 @@ import React from "react";
 const Step1 = ({ nextStep, handleChange, values }) => {
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center text-white">
+      <h2 className="text-2xl font-bold mb-6 text-center text-white ">
         Initalize New Agent
       </h2>
       <div className="mb-4">
@@ -26,7 +26,7 @@ const Step1 = ({ nextStep, handleChange, values }) => {
       </div>
       <button
         onClick={nextStep}
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Next
       </button>
