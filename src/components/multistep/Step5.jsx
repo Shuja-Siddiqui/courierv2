@@ -114,7 +114,7 @@ const Step5 = ({ values, prevStep, nextStep }) => {
 
   return (
     <div>
-      <h2 className="text-white text-2xl font-bold mb-6 text-center">Deploy</h2>
+      <h2 className="text-white text-2xl font-bold mb-6 text-center text-white">Deploy</h2>
 
       <div className="mb-4 flex flex-col justify-start gap-2">
         <label className="text-white mr-4">
@@ -143,7 +143,7 @@ const Step5 = ({ values, prevStep, nextStep }) => {
             {technologies.map((tech) => (
               <button
                 key={tech}
-                className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 {tech}
               </button>
@@ -210,7 +210,7 @@ const Step5 = ({ values, prevStep, nextStep }) => {
       </button>
       <button
         onClick={nextStep}
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Next
       </button>

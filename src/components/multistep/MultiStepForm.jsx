@@ -32,7 +32,7 @@ const MultiStepForm = ({ formData, setFormData }) => {
           <div
             className={`w-8 h-8 flex justify-center items-center rounded-full ${
               currentStep === step
-                ? "bg-purple-500 text-white"
+                ? "bg-gray-900 text-white"
                 : "bg-gray-200 text-gray-500"
             }`}
           >
@@ -45,7 +45,7 @@ const MultiStepForm = ({ formData, setFormData }) => {
   );
 
   return (
-    <div className="max-w-[100%] mx-auto p-6 bg-gray-800 rounded-lg shadow-md border border-purple-500">
+    <div className="max-w-[100%] mx-auto p-6 bg-gray-800 rounded-lg shadow-md border border-gray-600">
       {renderStepIndicator()}
 
       {currentStep === 1 && (

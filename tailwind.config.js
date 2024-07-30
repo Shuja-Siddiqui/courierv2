@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "light-grey": "#00000012",
+        "background": "#101010",
       },
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
