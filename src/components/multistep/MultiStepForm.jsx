@@ -45,7 +45,7 @@ const MultiStepForm = ({ formData, setFormData }) => {
   );
 
   return (
-    <div className="max-w-[100%] mx-auto p-6 bg-gray-800 rounded-lg shadow-md border border-purple-500 h-[80vh] overflow-y-scroll">
+    <div className="max-w-[100%] mx-auto p-6 bg-gray-800 rounded-lg shadow-md border border-gray-600 h-[80vh] overflow-y-scroll">
       {renderStepIndicator()}
 
       {currentStep === 1 && (

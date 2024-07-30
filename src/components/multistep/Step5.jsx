@@ -153,7 +153,9 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
 
   return (
     <div>
-      <h2 className="text-white text-2xl font-bold mb-6 text-center text-white">Deploy</h2>
+      <h2 className="text-white text-2xl font-bold mb-6 text-center text-white">
+        Deploy
+      </h2>
 
       <div className="mb-4 flex flex-col justify-start gap-2">
         <label className="text-white mr-4">
@@ -161,7 +163,7 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
             type="checkbox"
             checked={selectedConnections.Website}
             onChange={() => handleConnectionTypeSelection("Website")}
-            className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-2"
+            className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-gray-600 focus:ring-2 mr-2"
           />
           Website
         </label>
@@ -170,7 +172,7 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
             type="checkbox"
             checked={selectedConnections.Email}
             onChange={() => handleConnectionTypeSelection("Email")}
-            className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-2"
+            className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-600  focus:ring-2 mr-2"
           />
           Email
         </label>

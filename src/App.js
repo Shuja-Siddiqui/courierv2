@@ -23,7 +23,7 @@ function App() {
             <Route path="/support" element={<Support />} />
             <Route
               path="/support/ticket-detail"
-              element={<TicketDetail ticket={selectedTicket} />}
+              element={<TicketDetail />}
             />
           </Routes>
         </div>
