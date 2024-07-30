@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-const Step5 = ({ values, prevStep, handleSubmit, handleEmail, emailData }) => {
+const Step5 = ({
+  values,
+  prevStep,
+  handleSubmit,
+  handleEmail,
+  emailData,
+  nextStep,
+}) => {
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
     Email: false,
@@ -274,10 +281,10 @@ const Step5 = ({ values, prevStep, handleSubmit, handleEmail, emailData }) => {
         Prev
       </button>
       <button
-        onClick={handleSubmit}
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={nextStep}
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
-        Submit
+        Next
       </button>
     </div>
   );
