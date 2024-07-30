@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import WorkFlowSelector from "../WorkFlowSelector";
 
-const Step5 = ({ values, prevStep, handleSubmit }) => {
+const Step5 = ({ values, prevStep, handleSubmit, handleChange }) => {
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
     Email: false,
@@ -150,99 +151,127 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
     }
   });
 </script>`;
+  // workFLow
+  const WorkFlow = ["POD Audit 3.1", "POD Audit BETA"];
 
   return (
-    <div>
-      <h2 className="text-white text-2xl font-bold mb-6 text-center text-white">
-        Deploy
-      </h2>
+    <>
+      {/* suuport start */}
+      {values?.agentType === "Support" ? (
+        <div>
+          <h2 className="text-white text-2xl font-bold mb-6 text-center ">
+            Deploy
+          </h2>
 
-      <div className="mb-4 flex flex-col justify-start gap-2">
-        <label className="text-white mr-4">
-          <input
-            type="checkbox"
-            checked={selectedConnections.Website}
-            onChange={() => handleConnectionTypeSelection("Website")}
-            className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-gray-600 focus:ring-2 mr-2"
-          />
-          Website
-        </label>
-        <label className="text-white ">
-          <input
-            type="checkbox"
-            checked={selectedConnections.Email}
-            onChange={() => handleConnectionTypeSelection("Email")}
-            className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-600  focus:ring-2 mr-2"
-          />
-          Email
-        </label>
-      </div>
-
-      <div className="w-full flex justify-center">
-        {selectedConnections.Website === true && (
-          <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
-            {technologies.map((tech) => (
-              <button
-                key={tech}
-                className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                {tech}
-              </button>
-            ))}
+          <div className="mb-4 flex flex-col justify-start gap-2">
+            <label className="text-white mr-4">
+              <input
+                type="checkbox"
+                checked={selectedConnections.Website}
+                onChange={() => handleConnectionTypeSelection("Website")}
+                className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-gray-600 focus:ring-2 mr-2"
+              />
+              Website
+            </label>
+            <label className="text-white ">
+              <input
+                type="checkbox"
+                checked={selectedConnections.Email}
+                onChange={() => handleConnectionTypeSelection("Email")}
+                className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-600  focus:ring-2 mr-2"
+              />
+              Email
+            </label>
           </div>
-        )}
-      </div>
 
-      <div className="w-full flex justify-center">
-        {selectedConnections.Website === true && (
+          <div className="w-full flex justify-center">
+            {selectedConnections.Website === true && (
+              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+                {technologies.map((tech) => (
+                  <button
+                    key={tech}
+                    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    {tech}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="w-full flex justify-center">
+            {selectedConnections.Website === true && (
+              <div>
+                <h2 className="text-white text-xl font-bold mb-4">
+                  Your Chatbot Code
+                </h2>
+                <textarea
+                  readOnly
+                  value={codeSnippet}
+                  rows={5}
+                  className="w-full p-2 border rounded"
+                ></textarea>
+                <h3 className="text-white text-lg font-bold mt-4">
+                  Instructions:
+                </h3>
+                <div className="text-white w-full h-[100px] overflow-y-scroll">
+                  <p className="mt-2 text-sm font-semibold">
+                    Copy and paste the above code into your website's HTML to
+                    add the chatbot button.
+                  </p>
+
+                  <ol className="list-decimal list-inside text-sm mt-2">
+                    <li>
+                      Open your website's HTML file where you want the chatbot
+                      button to appear.
+                    </li>
+                    <li>
+                      Paste the entire code snippet before the closing{" "}
+                      <code>&lt;/body&gt;</code> tag.
+                    </li>
+                    <li>
+                      Save the changes to your HTML file and open your website
+                      in a browser to see the chatbot button in the bottom right
+                      corner.
+                    </li>
+                    <li>
+                      Click the "Chat" button to open the chatbot modal and
+                      interact with it.
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="w-full flex justify-center">
+            {selectedConnections.Email === true && (
+              <div className="text-white flex space-x-4 p-6 bg-gray-800 rounded-lg">
+                Please Select Email
+              </div>
+            )}
+          </div>
+        </div>
+      ) : values?.agentType === "Audit" ? (
+        <div>
+          <WorkFlowSelector />{" "}
+        </div>
+      ) : (
+        <div className="w-full flex justify-center items-center h-screen flex-col">
+          <div className="text-red-500 text-xl font-bold">
+            Error: You haven't selected an agent type.
+          </div>
           <div>
-            <h2 className="text-white text-xl font-bold mb-4">
-              Your Chatbot Code
-            </h2>
-            <textarea
-              readOnly
-              value={codeSnippet}
-              rows={5}
-              className="w-full p-2 border rounded"
-            ></textarea>
-            <h3 className="text-white text-lg font-bold mt-4">Instructions:</h3>
-            <div className="text-white w-full h-[100px] overflow-y-scroll">
-              <p className="mt-2 text-sm font-semibold">
-                Copy and paste the above code into your website's HTML to add
-                the chatbot button.
-              </p>
-
-              <ol className="list-decimal list-inside text-sm mt-2">
-                <li>
-                  Open your website's HTML file where you want the chatbot
-                  button to appear.
-                </li>
-                <li>
-                  Paste the entire code snippet before the closing{" "}
-                  <code>&lt;/body&gt;</code> tag.
-                </li>
-                <li>
-                  Save the changes to your HTML file and open your website in a
-                  browser to see the chatbot button in the bottom right corner.
-                </li>
-                <li>
-                  Click the "Chat" button to open the chatbot modal and interact
-                  with it.
-                </li>
-              </ol>
-            </div>
+            <button
+              onClick={prevStep}
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+            >
+              Prev
+            </button>
           </div>
-        )}
-      </div>
-
-      <div className="w-full flex justify-center">
-        {selectedConnections.Email === true && (
-          <div className="text-white flex space-x-4 p-6 bg-gray-800 rounded-lg">
-            Please Select Email
-          </div>
-        )}
-      </div>
-
+        </div>
+      )}
+      {/* support End */}
       <button
         onClick={prevStep}
         className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
@@ -255,7 +284,7 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
       >
         Submit
       </button>
-    </div>
+    </>
   );
 };
 
