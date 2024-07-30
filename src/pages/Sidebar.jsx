@@ -27,7 +27,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-[100vh] w-[15%] bg-black text-white flex flex-col">
+    <div className="h-[100vh] w-[15%] bg-black text-white flex flex-col overflow-y-auto custom-scrollbar">
       <div className="flex justify-center items-center px-5">
         <div className="flex h-[10px] w-full items-center gap-2 text-start px-4 py-5 mt-[25px] rounded-lg bg-gradient-to-br from-background to-gray-500 shadow-lg">
           <img src={normallogo} alt="Logo" className="object-fill" />
