@@ -6,7 +6,13 @@ import Step4 from "./Step4";
 import Step5 from "./Step5";
 import Step6 from "./Step6";
 
-const MultiStepForm = ({ formData, setFormData, emailData, setEmailData }) => {
+const MultiStepForm = ({
+  formData,
+  setFormData,
+  emailData,
+  setEmailData,
+  onClose,
+}) => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const nextStep = () => {
@@ -27,7 +33,9 @@ const MultiStepForm = ({ formData, setFormData, emailData, setEmailData }) => {
 
   const handleSubmit = () => {
     console.log(formData);
-    setCurrentStep(5);
+    setCurrentStep(6);
+    formData.status = "Active";
+    onClose();
   };
 
   const renderStepIndicator = () => (
@@ -101,8 +109,8 @@ const MultiStepForm = ({ formData, setFormData, emailData, setEmailData }) => {
       {currentStep === 6 && (
         <Step6
           prevStep={prevStep}
-          nextStep={nextStep}
-          // handleSubmit={handleSubmit}
+          // nextStep={nextStep}
+          handleSubmit={handleSubmit}
           handleChange={handleChange}
           handleEmail={handleEmail}
           values={formData}

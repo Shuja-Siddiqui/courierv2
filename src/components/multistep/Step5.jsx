@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Step5 = ({
   values,
@@ -20,6 +20,10 @@ const Step5 = ({
       [type]: !prevSelected[type],
     }));
   };
+
+  useEffect(() => {
+    values.deployType = selectedConnections;
+  }, [selectedConnections]);
 
   const codeSnippet = `
     <!-- Chatbot Button -->

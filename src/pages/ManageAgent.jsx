@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MultiStepForm from "../components/multistep/MultiStepForm";
 import { RiRobot3Line } from "react-icons/ri";
 import Modal from "../components/multistep/Modal";
+import AgentTable from "../components/table/AgentTable";
 
 export default function ManageAgent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,15 +10,20 @@ export default function ManageAgent() {
     agentName: "",
     agentDescription: "",
     agentType: "",
+    workFlow: "",
     prompt:
       "You are an agent providing support for a logistics company known as Raven Force. You have access to a Knowledge Base (KB) containing all customer order information. Your task is to respond to customer inquiries based on this data. Ensure that your responses are accurate and confidential, so no customer information is shared or reviewed by others.",
     kbType: "",
+    deployType: "",
+    status: "",
   });
   const [emailData, setEmailData] = useState({
     email: "",
     password: "",
     iMap: "",
   });
+
+  const data = [formData];
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -37,12 +43,17 @@ export default function ManageAgent() {
           <RiRobot3Line /> Add
         </button>
       </div>
+
+      <div>
+        <AgentTable data={data} />
+      </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <MultiStepForm
           formData={formData}
           setFormData={setFormData}
           emailData={emailData}
           setEmailData={setEmailData}
+          onClose={closeModal}
         />
       </Modal>
     </div>

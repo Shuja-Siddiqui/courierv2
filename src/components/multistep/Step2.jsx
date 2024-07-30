@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
   const [selectedCardId, setSelectedCardId] = useState(null);
 
-  const handleSelect = (id) => {
+  const handleSelect = (id, name) => {
     setSelectedCardId(id);
+    values.workFlow = name;
   };
 
   const card = [
@@ -116,7 +117,7 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
               key={index}
               data={data}
               isSelected={selectedCardId === index}
-              onSelect={() => handleSelect(index)}
+              onSelect={() => handleSelect(index, data?.title)}
             />
           ))}
         </div>
