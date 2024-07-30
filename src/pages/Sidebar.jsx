@@ -93,7 +93,7 @@ const Sidebar = () => {
                     <FaHistory /><span>Chat History</span>
                   </NavLink>
                   <NavLink
-                    to="/suport"
+                    to="/support"
                     className={({ isActive }) =>
                       isActive
                         ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"

@@ -7,6 +7,7 @@ import ManageAgent from "./pages/ManageAgent";
 import ChTable from "./components/chathistory/ChTable";
 import ChatHistory from "./pages/ChatHistory";
 import Support from "./pages/Support";
+import TicketDetail from "./components/table/TicketDetail";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
             <Route path="/agents" element={<ManageAgent />} />
             <Route path="/chat-history" element={<ChatHistory />} />
             <Route path="/support" element={<Support />} />
+            <Route
+              path="/support/ticket-detail"
+              element={<TicketDetail ticket={selectedTicket} />}
+            />
           </Routes>
         </div>
       </div>
