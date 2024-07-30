@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 import Overview from "./pages/Overview";
 import Monitor from "./pages/Monitor";
+import SupportTicket from "./components/support/SupportTicket";
 
 function App() {
   const [data, setData] = useState("");
@@ -42,10 +43,11 @@ function App() {
                       <Route path="/chat-history" element={<ChatHistory />} />
                       <Route path="/support" element={<Support />} />
                       <Route path="/monitor" element={<Monitor />} />
-                      <Route
+                      <Route path="support/ticket" element={<SupportTicket />} />
+                      {/* <Route
                         path="/support/ticket/:id"
                         element={<TicketDetail />}
-                      />
+                      /> */}
                     </Routes>
                   </div>
                 </div>
