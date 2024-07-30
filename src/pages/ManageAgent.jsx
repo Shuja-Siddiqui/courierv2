@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MultiStepForm from "../components/multistep/MultiStepForm";
 import { RiRobot3Line } from "react-icons/ri";
 import Modal from "../components/multistep/Modal";
 import AgentTable from "../components/table/AgentTable";
 
-export default function ManageAgent() {
+export default function ManageAgent({ onDataChange }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     agentName: "",
@@ -32,6 +32,10 @@ export default function ManageAgent() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    onDataChange(formData?.status);
+  }, [formData?.status]);
 
   return (
     <div className="h-[685px] bg-background p-4">
