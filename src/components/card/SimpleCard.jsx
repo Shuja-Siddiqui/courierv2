@@ -12,16 +12,20 @@ export default function SimpleCard({ data, isSelected, onSelect }) {
           {isSelected ? "Selected" : "Select"}
         </button>
       </div>
-      <h2 className="text-2xl font-bold mb-6 text-center">{data.title}</h2>
+      <div className="flex flex-col">
+        <h2 className="text-2xl font-bold mb-6 text-center h-36">
+          {data.title}
+        </h2>
 
-      <br />
-      <p className="text-gray-400">{data.body}</p>
-      <br />
-      <ul>
-        {data.actions.map((item) => {
-          return <li>{item}</li>;
-        })}
-      </ul>
+        <br />
+        <p className="text-gray-400 h-36">{data.body}</p>
+        <br />
+        <ul>
+          {data.actions.map((item, index) => {
+            return <li key={index}>{item}</li>;
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

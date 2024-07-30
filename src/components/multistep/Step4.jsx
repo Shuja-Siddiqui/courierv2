@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Step4 = ({ prevStep, nextStep, handleSubmit, handleChange, values }) => {
+const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
   const [dbType, setDbType] = useState("");
   const [connectionType, setConnectionType] = useState("Database");
 

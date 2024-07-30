@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Step5 = ({ values, prevStep, nextStep }) => {
+const Step5 = ({ values, prevStep, handleSubmit }) => {
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
     Email: false,
@@ -15,7 +15,6 @@ const Step5 = ({ values, prevStep, nextStep }) => {
   };
 
   const codeSnippet = `
-    <!-- Chatbot Button -->
     <!-- Chatbot Button -->
 <div id="chatbot-button" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
   <button
@@ -51,11 +50,11 @@ const Step5 = ({ values, prevStep, nextStep }) => {
     </button>
     <div id="chatbot-container" style="font-family: 'Manrope', sans-serif; height: calc(100% - 0px); display: flex; flex-direction: column;">
       <header style="background-color: #B31F13; color: white; padding: 10px; border-radius: 10px 10px 0 0;">
-        <h3 style="margin: 0;">${values.chatbotName}</h3>
+        <h3 style="margin: 0;">RAVEN FORCE</h3>
       </header>
       <div id="chatbot-messages" style="flex: 1; border: 1px solid #ccc; padding: 10px; border-radius: 0 0 10px 10px; overflow-y: auto; background-color: #f9f9f9;">
         <div style="margin-bottom: 10px;">
-          <p style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">${values.welcomeMessage}</p>
+          <p style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">Hello! How can I assist you today?</p>
         </div>
         <!-- Chat messages will go here -->
       </div>
@@ -79,8 +78,8 @@ const Step5 = ({ values, prevStep, nextStep }) => {
 
 <script>
   const apiKey = '${values.apiKey}';
-  const chatbotName = '${values.chatbotName}';
-  const welcomeMessage = '${values.welcomeMessage}';
+  const chatbotName = 'RAVEN FORCE';
+  const welcomeMessage = 'Hello! How can I assist you today?';
   const sessionId = '123e4567-e89b-12d3-a456-426614174000';
 
   async function sendMessage() {
@@ -101,7 +100,7 @@ const Step5 = ({ values, prevStep, nextStep }) => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + apiKey
       },
-      body: JSON.stringify({ question:message,session_id: sessionId })
+      body: JSON.stringify({ question: message, session_id: sessionId })
     });
 
     const data = await response.json();
@@ -109,7 +108,47 @@ const Step5 = ({ values, prevStep, nextStep }) => {
     botMessage.innerHTML = \`<p style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">\${data.answer}</p>\`;
     messageContainer.appendChild(botMessage);
     messageContainer.scrollTop = messageContainer.scrollHeight;
+
+    // Ask if the user's query was resolved
+    const resolvedMessage = document.createElement('div');
+    resolvedMessage.innerHTML = \`<p style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">Was your query resolved? Type "yes" or "no".</p>\`;
+    messageContainer.appendChild(resolvedMessage);
   }
+
+  document.getElementById('chatbot-input').addEventListener('keydown', async function(event) {
+    if (event.key === 'Enter') {
+      const message = event.target.value.toLowerCase().trim();
+      if (message === 'yes' || message === 'no') {
+        const messageContainer = document.getElementById('chatbot-messages');
+        const userMessage = document.createElement('div');
+        userMessage.innerHTML = \`<p style="background-color: #e1e1e1; padding: 10px; border-radius: 5px;">\${message}</p>\`;
+        messageContainer.appendChild(userMessage);
+
+        if (message === 'no') {
+          await fetch('http://192.168.0.120:3100/generate/ticket', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + apiKey
+            },
+            body: JSON.stringify({ session_id: sessionId })
+          });
+
+          const ticketMessage = document.createElement('div');
+          ticketMessage.innerHTML = \`<p style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">A ticket has been generated for further assistance.</p>\`;
+          messageContainer.appendChild(ticketMessage);
+        } else {
+          const thankYouMessage = document.createElement('div');
+          thankYouMessage.innerHTML = \`<p style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">Thank you! If you have any other questions, feel free to ask.</p>\`;
+          messageContainer.appendChild(thankYouMessage);
+        }
+
+        event.target.value = '';
+      } else {
+        sendMessage();
+      }
+    }
+  });
 </script>`;
 
   return (
@@ -209,10 +248,10 @@ const Step5 = ({ values, prevStep, nextStep }) => {
         Prev
       </button>
       <button
-        onClick={nextStep}
-        className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={handleSubmit}
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
-        Next
+        Submit
       </button>
     </div>
   );
