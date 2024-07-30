@@ -19,6 +19,7 @@ export default function ManageAgent({ onDataChange }) {
     kbType: "",
     deployType: "",
     status: "",
+    externalModel: "",
   });
   const [emailData, setEmailData] = useState({
     email: "",

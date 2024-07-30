@@ -301,7 +301,7 @@ const Step5 = ({
         </div>
       ) : values?.agentType === "Audit" ? (
         <div>
-          <WorkFlowSelector />{" "}
+          <WorkFlowSelector setFormData={setFormData} />{" "}
         </div>
       ) : (
         <div className="w-full flex justify-center items-center h-screen flex-col">

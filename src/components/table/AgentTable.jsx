@@ -27,6 +27,9 @@ const AgentTable = ({ topHeading, data }) => {
                   Deploy Type
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider font-manrope">
+                  External Model
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider font-manrope">
                   Status
                 </th>
               </tr>
@@ -49,6 +52,12 @@ const AgentTable = ({ topHeading, data }) => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
                     {item?.deployType.Website && "Website"}
                     {item?.deployType.Email && " | " + "Email"}
+                    {!item?.deployType.Website && !item?.deployType.Email
+                      ? "-"
+                      : ""}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
+                    {item?.externalModel !== "" ? item?.externalModel : "-"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
                     {item?.status}

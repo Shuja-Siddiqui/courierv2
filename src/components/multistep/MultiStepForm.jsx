@@ -41,7 +41,7 @@ const MultiStepForm = ({
   };
 
   const handleSubmit = async () => {
-    setCurrentStep(6);
+    // setCurrentStep(6);
     formData.status = "Active";
     openConfirm();
     // onClose();
@@ -143,7 +143,7 @@ const MultiStepForm = ({
         <Step5
           prevStep={prevStep}
           nextStep={nextStep}
-          // handleSubmit={handleSubmit}
+          handleSubmit={handleSubmit}
           handleChange={handleChange}
           handleEmail={handleEmail}
           emailData={emailData}

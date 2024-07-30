@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 
-const WorkFlowSelector = () => {
-  const [selectedWorkFlow, setSelectedWorkFlow] = useState('');
+const WorkFlowSelector = ({ setFormData }) => {
+  const [selectedWorkFlow, setSelectedWorkFlow] = useState("");
   const [showButton, setShowButton] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [inputMessage, setInputMessage] = useState("");
   const [fileCount, setFileCount] = useState(0);
   const [isTesting, setIsTesting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [file, setFile] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
 
+  const updateExternalModel = (value) => {
+    setFormData((prevValues) => ({
+      ...prevValues,
+      externalModel: value,
+    }));
+  };
+
   const WorkFlow = ["POD Audit 3.1", "POD Audit Beta"]; // Example workflow options
 
   const handleChange = (event) => {
     setSelectedWorkFlow(event.target.value);
+    updateExternalModel(event.target.value);
     setShowButton(true);
   };
 
@@ -42,7 +50,7 @@ const WorkFlowSelector = () => {
 
     const reader = new FileReader();
     reader.onloadend = () => {
-      newMessages.push({ text: '', image: reader.result, rating: null });
+      newMessages.push({ text: "", image: reader.result, rating: null });
       setMessages(newMessages);
       setAnalyzing(true);
       setTimeout(() => {
@@ -57,16 +65,19 @@ const WorkFlowSelector = () => {
     };
     reader.readAsDataURL(file);
 
-    setInputMessage(''); // Clear input field after sending message
+    setInputMessage(""); // Clear input field after sending message
     setFile(null); // Clear file after sending
   };
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && (selectedFile.type === 'image/png' || selectedFile.type === 'image/jpeg')) {
+    if (
+      selectedFile &&
+      (selectedFile.type === "image/png" || selectedFile.type === "image/jpeg")
+    ) {
       setFile(selectedFile);
     } else {
-      alert('Only PNG or JPG files are allowed');
+      alert("Only PNG or JPG files are allowed");
     }
   };
 
@@ -184,7 +195,7 @@ const WorkFlowSelector = () => {
         <button
           onClick={handleButtonClick}
           className={`${
-            isTesting ? 'bg-blue-300' : 'bg-blue-500'
+            isTesting ? "bg-blue-300" : "bg-blue-500"
           } text-white px-4 py-2 rounded mb-2`}
           disabled={isTesting}
         >
@@ -208,7 +219,7 @@ const WorkFlowSelector = () => {
               ></path>
             </svg>
           ) : (
-            'Test Connection'
+            "Test Connection"
           )}
         </button>
       )}
@@ -217,7 +228,7 @@ const WorkFlowSelector = () => {
         <p className="text-green-500 mt-2">{successMessage}</p>
       )}
 
-      {successMessage.includes('Connected Successfully') && (
+      {successMessage.includes("Connected Successfully") && (
         <button
           onClick={openModal}
           className="bg-gray-400 text-white px-4 py-2 rounded mb-2 hover:bg-gray-600"
