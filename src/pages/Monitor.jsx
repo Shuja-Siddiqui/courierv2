@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaFilter, FaTimes } from "react-icons/fa";
 import { TbHeartRateMonitor } from "react-icons/tb";
 import { VscActivateBreakpoints } from "react-icons/vsc";
+import { pod1, pod10, pod2, pod3, pod4, pod5, pod6, pod7, pod8, pod9 } from "../assets/images";
 
-// Generate random data
-const generateData = () => {
-  const data = [];
-  for (let i = 1; i <= 12; i++) {
-    data.push({
-      driverId: `DR${i}`,
-      orderId: `ORD${i}`,
-      pod: `Proof of Delivery ${i}`,
-      rating: Math.floor(Math.random() * 10) + 1,
-    });
-  }
-  return data;
-};
+// Static data with placeholder images
+const data = [
+  { driverId: "DR1", orderId: "ORD1", pod: pod1, rating: 9 },
+  { driverId: "DR2", orderId: "ORD2", pod: pod2, rating: 10 },
+  { driverId: "DR3", orderId: "ORD3", pod: pod3, rating: 7 },
+  { driverId: "DR4", orderId: "ORD4", pod: pod4, rating: 4 },
+  { driverId: "DR5", orderId: "ORD5", pod: pod5, rating: 6 },
+  { driverId: "DR6", orderId: "ORD6", pod: pod6, rating: 2 },
+  { driverId: "DR7", orderId: "ORD7", pod: pod7, rating: 1 },
+  { driverId: "DR8", orderId: "ORD8", pod: pod8, rating: 1 },
+  { driverId: "DR9", orderId: "ORD9", pod: pod9, rating: 9 },
+  { driverId: "DR10", orderId: "ORD10", pod: pod10, rating: 10 },
+];
 
 const PodCard = ({ title, isActive, onToggleActive, onView }) => {
   return (
@@ -46,12 +47,12 @@ const PodCard = ({ title, isActive, onToggleActive, onView }) => {
   );
 };
 
-const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange }) => {
+const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange, onImageClick }) => {
   const rowsPerPage = 6;
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
   const handleRatingChange = (event) => {
-    onFilterChange(Number(event.target.value));
+    onFilterChange(event.target.value === "all" ? "all" : Number(event.target.value));
   };
 
   const handlePageChange = (direction) => {
@@ -72,14 +73,19 @@ const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange
             <div className="overflow-hidden border border-gray-700 md:rounded-lg">
               <div className="flex justify-between items-center bg-gray-800 p-4">
                 <span className="text-white">Filter by Rating: </span>
-                <select value={selectedRating} onChange={handleRatingChange} className="text-black">
-                  <option value="all">All</option>
+                <button value={selectedRating} onChange={handleRatingChange} className="text-black bg">
+                  <div className="text-white bg-slate-700 flex items-center px-2 py-1">
+                  <FaFilter/>
+                  <select className="bg-transparent" >
+                  <option value="all" className="bg-slate-500 px-2 py-1">All</option>
                   {[...Array(10).keys()].map((n) => (
-                    <option key={n + 1} value={n + 1}>
+                    <option key={n + 1} value={n + 1} className="bg-slate-500 px-2 py-1">
                       {n + 1}
                     </option>
                   ))}
-                </select>
+                  </select>
+                  </div>
+                </button>
               </div>
               <table className="min-w-full divide-y divide-gray-700">
                 <thead className="bg-gray-800">
@@ -95,7 +101,14 @@ const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange
                     <tr key={index} className={index % 2 === 0 ? "bg-gray-700" : "bg-gray-600"}>
                       <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.driverId}</td>
                       <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.orderId}</td>
-                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.pod}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
+                        <img
+                          src={item.pod}
+                          alt="Proof of Delivery"
+                          className="w-16 h-16 cursor-pointer"
+                          onClick={() => onImageClick(item.pod)}
+                        />
+                      </td>
                       <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.rating}</td>
                     </tr>
                   ))}
@@ -132,9 +145,11 @@ export default function Monitor() {
   const [cardsData] = useState([{ title: "POD Audit 3.1" }, { title: "POD Audit Beta" }]);
   const [activeCard, setActiveCard] = useState(null);
   const [viewedCard, setViewedCard] = useState(null);
-  const [tableData] = useState(generateData());
+  const [tableData] = useState(data);
   const [selectedRating, setSelectedRating] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
 
   const handleToggleActive = (index) => {
     setActiveCard(index === activeCard ? null : index);
@@ -143,6 +158,16 @@ export default function Monitor() {
   const handleView = (index) => {
     setViewedCard(index);
     setCurrentPage(1);
+  };
+
+  const handleImageClick = (imgSrc) => {
+    setModalImage(imgSrc);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setModalImage(null);
   };
 
   const filteredData = selectedRating === "all" ? tableData : tableData.filter((item) => item.rating === selectedRating);
@@ -175,7 +200,25 @@ export default function Monitor() {
           selectedRating={selectedRating}
           currentPage={currentPage}
           onPageChange={setCurrentPage}
+          onImageClick={handleImageClick}
         />
+      )}
+
+      {modalOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50"
+          onClick={handleCloseModal}
+        >
+          <div className="relative bg-gray-900 p-4 rounded-lg shadow-lg" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="absolute top-2 right-2 text-white"
+              onClick={handleCloseModal}
+            >
+              <FaTimes size={20} />
+            </button>
+            <img src={modalImage} alt="Modal Proof of Delivery" className="w-[500px] h-[400px]" />
+          </div>
+        </div>
       )}
     </div>
   );
