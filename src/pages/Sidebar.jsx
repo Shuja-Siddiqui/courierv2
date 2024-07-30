@@ -97,7 +97,7 @@ const Sidebar = ({ data }) => {
                       <FaHistory />
                       <span>Chat History</span>
                     </NavLink>
-                    {/* <NavLink
+                    <NavLink
                       to="/support"
                       className={({ isActive }) =>
                         isActive
@@ -108,7 +108,7 @@ const Sidebar = ({ data }) => {
                       <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
                       <FaUser />
                       <span>Support</span>
-                    </NavLink> */}
+                    </NavLink>
                   </div>
                 </div>
               )}
