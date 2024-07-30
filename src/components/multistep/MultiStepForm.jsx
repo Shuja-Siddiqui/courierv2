@@ -4,8 +4,15 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
+import Step6 from "./Step6";
 
-const MultiStepForm = ({ formData, setFormData }) => {
+const MultiStepForm = ({
+  formData,
+  setFormData,
+  emailData,
+  setEmailData,
+  onClose,
+}) => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const nextStep = () => {
@@ -20,14 +27,20 @@ const MultiStepForm = ({ formData, setFormData }) => {
     setFormData({ ...formData, [input]: e.target.value });
   };
 
+  const handleEmail = (input) => (e) => {
+    setEmailData({ ...emailData, [input]: e.target.value });
+  };
+
   const handleSubmit = () => {
     console.log(formData);
-    setCurrentStep(5);
+    setCurrentStep(6);
+    formData.status = "Active";
+    onClose();
   };
 
   const renderStepIndicator = () => (
     <div className="flex justify-center items-center mb-6">
-      {[1, 2, 3, 4, 5].map((step) => (
+      {[1, 2, 3, 4, 5, 6].map((step) => (
         <div key={step} className="flex items-center">
           <div
             className={`w-8 h-8 flex justify-center items-center rounded-full ${
@@ -38,7 +51,7 @@ const MultiStepForm = ({ formData, setFormData }) => {
           >
             {step}
           </div>
-          {step < 5 && <div className="w-10 h-1 bg-gray-300"></div>}
+          {step < 6 && <div className="w-10 h-1 bg-gray-300"></div>}
         </div>
       ))}
     </div>
@@ -84,8 +97,22 @@ const MultiStepForm = ({ formData, setFormData }) => {
       {currentStep === 5 && (
         <Step5
           prevStep={prevStep}
+          nextStep={nextStep}
+          // handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          handleEmail={handleEmail}
+          emailData={emailData}
+          values={formData}
+        />
+      )}
+
+      {currentStep === 6 && (
+        <Step6
+          prevStep={prevStep}
+          // nextStep={nextStep}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
+          handleEmail={handleEmail}
           values={formData}
         />
       )}
