@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Step5 = ({ values, prevStep, handleSubmit }) => {
+const Step5 = ({ values, prevStep, handleSubmit, handleEmail, emailData }) => {
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
     Email: false,
@@ -153,9 +153,7 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
 
   return (
     <div>
-      <h2 className="text-white text-2xl font-bold mb-6 text-center text-white">
-        Deploy
-      </h2>
+      <h2 className="text-white text-2xl font-bold mb-6 text-center">Deploy</h2>
 
       <div className="mb-4 flex flex-col justify-start gap-2">
         <label className="text-white mr-4">
@@ -237,8 +235,34 @@ const Step5 = ({ values, prevStep, handleSubmit }) => {
 
       <div className="w-full flex justify-center">
         {selectedConnections.Email === true && (
-          <div className="text-white flex space-x-4 p-6 bg-gray-800 rounded-lg">
-            Please Select Email
+          <div className="text-white flex flex-col p-6 bg-gray-800 rounded-lg">
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Enter Email"
+                value={emailData.agentName}
+                onChange={handleEmail("email")}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Enter Password"
+                value={emailData.password}
+                onChange={handleEmail("password")}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Enter I-Map"
+                value={emailData.iMap}
+                onChange={handleEmail("iMap")}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
           </div>
         )}
       </div>

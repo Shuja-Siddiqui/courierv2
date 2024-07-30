@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SimpleCard from "../card/SimpleCard";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
   const [selectedCardId, setSelectedCardId] = useState(null);

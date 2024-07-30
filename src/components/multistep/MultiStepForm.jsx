@@ -5,7 +5,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 
-const MultiStepForm = ({ formData, setFormData }) => {
+const MultiStepForm = ({ formData, setFormData, emailData, setEmailData }) => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const nextStep = () => {
@@ -18,6 +18,10 @@ const MultiStepForm = ({ formData, setFormData }) => {
 
   const handleChange = (input) => (e) => {
     setFormData({ ...formData, [input]: e.target.value });
+  };
+
+  const handleEmail = (input) => (e) => {
+    setEmailData({ ...emailData, [input]: e.target.value });
   };
 
   const handleSubmit = () => {
@@ -86,6 +90,8 @@ const MultiStepForm = ({ formData, setFormData }) => {
           prevStep={prevStep}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
+          handleEmail={handleEmail}
+          emailData={emailData}
           values={formData}
         />
       )}
