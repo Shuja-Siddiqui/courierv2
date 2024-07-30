@@ -166,10 +166,15 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
   const agentNames = ["Support", "Sales", "Finance", "Audit", "Bidder"];
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center text-white">
-        Select a Workflow Type
-      </h2>
-
+      <div className="flex  justify-center items-center  mb-6">
+        {" "}
+        <h2 className="text-2xl font-bold  text-center text-white">
+          Select a Workflow Type
+        </h2>
+        <button className="absolute right-20 bg-white text-black font-medium rounded py-2 px-4 hover:bg-gray-900 hover:text-white border border-gray-900 hover:border-white hover:scale-105">
+          Professional Services
+        </button>
+      </div>
       <div className="mb-4">
         <div className="relative">
           <select
