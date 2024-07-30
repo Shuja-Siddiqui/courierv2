@@ -12,201 +12,251 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
 
   const card = [
     {
-      title: "Automate inbound customer support tickets",
-      body: "Agent responds to and resolves a wide array of customer support tickets including: WISMO, address change requests and more",
+      title: "Efficiently Integrate and Automate Customer Support Tasks.",
+      body: "Connect the support agent with your knowledge base, and integrate the chatbot on your website, email, or dashboard for seamless support.",
       actions: [
-        "Retrieves information from company knowledge base to generate on-brand, on-policy responses",
-        "Searches TMS to retrieve most up-to-date order information",
-        "Retrieves POD images & serves in response",
-        "Initiates call to dispatcher or driver to confirm changes to address or delivery instructions",
-        "Updates TMS with updated address and/or instructions and pushes to driver apps",
+        "Retrieves information from PDFs, databases, and CSV files to generate accurate responses.",
+        "Integrates with your website, email, and dashboard for easy deployment.",
+        "Uses pre-built prompts to execute tasks and respond to customer queries.",
+        "Tracks orders and provides a comprehensive analysis of the workflow.",
+        "Connects to the knowledge base for on-brand, on-policy responses.",
+        "Searches TMS to get the latest order information.",
+        "Updates TMS with new address or instructions and sends updates to driver apps.",
+      ],
+      button: "Select",
+    },
+    {
+      title: "Streamline Address Change Requests for Logistics Support.",
+      body: "Automate the process of updating address change requests with your calling support agent, integrated seamlessly into your existing systems.",
+      actions: [
+        "Connects to the customer knowledge base for accurate information retrieval.",
+        "Integrates with the TMS to fetch and update address details.",
+        "Initiates calls to the dispatcher or driver to confirm address changes.",
+        "Updates the TMS and Ulala with new address details.",
+        "Notifies customers of successful address updates via email or SMS.",
       ],
     },
     {
-      title:
-        "Automate followup with carriers and drivers for inbound/outbound loads",
-      body: "Agent autonomously reads scheduled loads (inbound/outbound) then generates emails to carriers/drivers requesting tracking updates and flags late shipments within your TMS or email notifications",
+      title: "Efficiently Process Returns and RMA Requests.",
+      body: "Automate the handling of returns and Return Merchandise Authorization (RMA) requests to streamline operations.",
       actions: [
-        "Identify all scheduled loads from TMS",
-        "Read emails, 3rd-party and own tracking events to parse the most up-to-date status",
-        "Generate emails to carriers/drivers asking for track updates with responses",
-        "Flag loads which will miss an inbound/outbound cutoff time",
-        "Generate email notification to your ops team and/or update TMS",
+        "Connects to the returns management system to access RMA requests.",
+        "Verifies return eligibility based on company policies.",
+        "Updates the TMS with return authorization and instructions.",
+        "Coordinates with the warehouse for return processing and restocking.",
+        "Sends confirmation and instructions to customers regarding their return.",
       ],
     },
     {
-      title: "Automate inbound customer support tickets",
-      body: "Agent responds to and resolves a wide array of customer support tickets including: WISMO, address change requests and more",
+      title: " Automate Incident Management and Resolution.",
+      body: "Streamline the handling of incidents and disruptions in the logistics process to minimize impact.",
       actions: [
-        "Retrieves information from company knowledge base to generate on-brand, on-policy responses",
-        "Searches TMS to retrieve most up-to-date order information",
-        "Retrieves POD images & serves in response",
-        "Initiates call to dispatcher or driver to confirm changes to address or delivery instructions",
-        "Updates TMS with updated address and/or instructions and pushes to driver apps",
+        "Identifies and logs incidents based on predefined criteria or customer reports.",
+        "Retrieves relevant data from TMS or any KB and other systems to assess the incident.",
+        "Escalates critical incidents to appropriate support teams for immediate action.",
+        "Tracks incident resolution progress and updates stakeholders.",
+        "Provides resolution details and preventive measures to affected customers.",
       ],
     },
     {
-      title: "Automate inbound customer support tickets",
-      body: "Agent responds to and resolves a wide array of customer support tickets including: WISMO, address change requests and more",
+      title: "Automatically Process Rate Quote Requests.",
+      body: "Automate the generation and delivery of rate quotes for shipments and logistics services.",
       actions: [
-        "Retrieves information from company knowledge base to generate on-brand, on-policy responses",
-        "Searches TMS to retrieve most up-to-date order information",
-        "Retrieves POD images & serves in response",
-        "Initiates call to dispatcher or driver to confirm changes to address or delivery instructions",
-        "Updates TMS with updated address and/or instructions and pushes to driver apps",
-      ],
-    },
-    {
-      title: "Automate inbound customer support tickets",
-      body: "Agent responds to and resolves a wide array of customer support tickets including: WISMO, address change requests and more",
-      actions: [
-        "Retrieves information from company knowledge base to generate on-brand, on-policy responses",
-        "Searches TMS to retrieve most up-to-date order information",
-        "Retrieves POD images & serves in response",
-        "Initiates call to dispatcher or driver to confirm changes to address or delivery instructions",
-        "Updates TMS with updated address and/or instructions and pushes to driver apps",
+        "Retrieves shipment details and requirements from customer inquiries.",
+        "Integrates with rate calculation systems to generate accurate quotes.",
+        "Sends rate quotes to customers via email or chatbot.",
+        "Follows up on quote requests to confirm acceptance or further discussion.",
+        "Updates records with quote details and customer responses.",
       ],
     },
   ];
   const auditCard = [
     {
-      title: "Automate Follow-up with Carriers and Drivers",
-      body: "The agent autonomously manages communication with carriers and drivers, ensuring timely tracking updates and flagging potential delays within your TMS or via email notifications.",
+      title: "Verify delivery POD images",
+      body: "Agent reviews POD images and grades each image from 1 to 10, automatically flagging deliveries at risk of dispute.",
       actions: [
-        "Identify all scheduled loads from TMS",
-        "Parse the most up-to-date status from emails, third-party, and own tracking events",
-        "Generate emails to carriers/drivers requesting tracking updates",
-        "Flag loads at risk of missing inbound/outbound cutoff times",
-        "Notify your operations team and/or update TMS with flagged loads",
+        "Retrieve and analyze delivery POD images from TMS",
+        "Review image quality grading between 1-10",
+        "Flag images with grades below 7",
+        "Generate report",
+        "Send email to ops or notify through other channel (optional)",
+      ],
+      button: "Select",
+    },
+    {
+      title: "Automate Inventory Audits for Accuracy and Compliance",
+      body: "Streamline the process of conducting inventory audits to ensure accuracy and compliance.",
+      actions: [
+        "Connects to the inventory management system to retrieve current stock levels",
+        "Automatically compares physical inventory counts with system records",
+        "Flags discrepancies for further investigation",
+        "Generates inventory audit reports highlighting discrepancies and adjustments needed",
+        "Updates inventory records with audit findings and corrective actions",
       ],
     },
     {
-      title: "Automate Inbound Customer Support Tickets",
-      body: "The agent handles various customer support requests, such as WISMO and address changes, by leveraging company knowledge bases and current order data.",
+      title: "Automate Audits of Vendor and Partner Performance",
+      body: "Streamline the evaluation of vendor and partner performance to ensure service quality.",
       actions: [
-        "Generate on-brand responses using company knowledge base",
-        "Retrieve the latest order information from TMS",
-        "Provide POD images in responses",
-        "Coordinate with dispatchers or drivers for address or delivery instruction changes",
-        "Update TMS and driver apps with new address and instructions",
+        "Connects to performance management systems and vendor databases",
+        "Automatically collects and analyzes performance metrics (e.g., delivery times, accuracy)",
+        "Flags underperforming vendors or partners for review",
+        "Generates performance audit reports with recommendations for improvement",
+        "Updates audit records with performance findings and actions taken",
       ],
     },
     {
-      title: "Streamline Return Merchandise Authorization (RMA)",
-      body: "This agent facilitates the RMA process, ensuring efficient handling of product returns and exchanges, including coordination with logistics and inventory management.",
+      title: "Automate Verification of Shipment Documentation",
+      body: "Efficiently verify shipment documentation to ensure accuracy and compliance.",
       actions: [
-        "Initiate RMA process based on customer requests",
-        "Verify product return eligibility using order history",
-        "Coordinate with inventory management for restocking",
-        "Communicate with customers on return status and next steps",
-        "Update CRM with RMA details and resolution status",
-      ],
-    },
-    {
-      title: "Enhance Fraud Detection and Prevention",
-      body: "The agent uses advanced algorithms to detect and prevent fraudulent activities by analyzing transaction data and flagging suspicious patterns.",
-      actions: [
-        "Monitor transactions in real-time for anomalies",
-        "Analyze historical data to identify fraud patterns",
-        "Flag suspicious transactions for manual review",
-        "Notify security team of potential fraud cases",
-        "Update risk assessment models based on new findings",
-      ],
-    },
-    {
-      title: "Optimize Inventory Management",
-      body: "The agent helps optimize inventory levels by analyzing sales trends, predicting demand, and coordinating with suppliers to maintain optimal stock levels.",
-      actions: [
-        "Analyze sales data to predict future demand",
-        "Coordinate with suppliers for timely restocking",
-        "Identify slow-moving inventory for potential markdowns",
-        "Update inventory records with new stock levels",
-        "Generate reports on inventory turnover and stock levels",
+        "Connects to shipment management systems to access shipment documents",
+        "Automatically checks for completeness and accuracy of shipment paperwork (e.g., bills of lading, packing slips)",
+        "Flags missing or incorrect documentation for review",
+        "Generates reports on documentation issues and compliance status",
+        "Updates audit records with verification results and corrective actions",
       ],
     },
   ];
-  
+  const salesCard = [
+    {
+      title: "Automate Lead Management and Follow-Up Tasks",
+      body: "Streamline the process of managing and following up on leads to boost sales efficiency.",
+      actions: [
+        "Connects to CRM and external lead generation apps to import new leads.",
+        "Categorizes and prioritizes leads based on predefined criteria.",
+        "Sends automated follow-up emails to leads with personalized content.",
+        "Schedules follow-up calls or meetings based on lead engagement.",
+        "Tracks lead interactions and updates CRM with status and notes.",
+      ],
+    },
+    {
+      title: "Automate Proposal Generation and Delivery",
+      body: "Efficiently generate and send proposals to potential clients with minimal manual effort.",
+      actions: [
+        "Retrieves client requirements and details from CRM or external forms.",
+        "Uses pre-defined templates to generate customized proposals.",
+        "Integrates with document management systems to store and retrieve templates.",
+        "Sends proposals to clients via email or secure document sharing platforms.",
+        "Follows up with clients on proposal status and schedules review meetings.",
+      ],
+    },
+    {
+      title: "Automate Contract Management and Renewal Notifications",
+      body: "Automate the management and renewal process of sales contracts to maintain continuous client engagement.",
+      actions: [
+        "Connects to contract management systems to track contract statuses and expiration dates.",
+        "Sends automated reminders for contract renewals or reviews.",
+        "Generates renewal proposals or updates based on current contract terms.",
+        "Coordinates with clients to finalize contract renewals or amendments.",
+        "Updates CRM with contract changes and renewal status.",
+      ],
+    },
+    {
+      title: "Automate Load Board Bidding",
+      body: "Agent autonomously generates and submits intelligent bids on connected load boards.",
+      actions: [
+        "Analyze historical win rates of bids for load types.",
+        "Generate a smart bid for each posted load.",
+        "Submit bid.",
+        "Update TMS.",
+      ],
+    },
+  ];
+
   const agentNames = ["Support", "Sales", "Finance", "Audit", "Bidder"];
   return (
     <div>
-    <h2 className="text-2xl font-bold mb-6 text-center text-white">
-      Select a Workflow Type
-    </h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">
+        Select a Workflow Type
+      </h2>
 
-    <div className="mb-4">
-      <div className="relative">
-        <select
-          value={values.agentType}
-          onChange={handleChange("agentType")}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
-        >
-          <option value="" disabled>
-            Select an Agent
-          </option>
-          {agentNames.map((agent, index) => (
-            <option key={index} value={agent}>
-              {agent}
-            </option>
-          ))}
-        </select>
-        <div className="absolute top-0 right-0 h-full flex items-center pr-2 pointer-events-none">
-          <svg
-            className="w-4 h-4 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className="mb-4">
+        <div className="relative">
+          <select
+            value={values.agentType}
+            onChange={handleChange("agentType")}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
+            <option value="" disabled>
+              Select an Agent
+            </option>
+            {agentNames.map((agent, index) => (
+              <option key={index} value={agent}>
+                {agent}
+              </option>
+            ))}
+          </select>
+          <div className="absolute top-0 right-0 h-full flex items-center pr-2 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </div>
         </div>
       </div>
+
+      {values.agentType === "Support" && (
+        <div className="w-full flex gap-4 mb-8">
+          {card.map((data, index) => (
+            <SimpleCard
+              key={index}
+              data={data}
+              isSelected={selectedCardId === index}
+              onSelect={() => handleSelect(index, data?.title)}
+            />
+          ))}
+        </div>
+      )}
+
+      {values.agentType === "Audit" && (
+        <div className="w-full flex gap-4 mb-8">
+          {auditCard.map((data, index) => (
+            <SimpleCard
+              key={index}
+              data={data}
+              isSelected={selectedCardId === index}
+              onSelect={() => handleSelect(index)}
+            />
+          ))}
+        </div>
+      )}
+
+      {values.agentType === "Sales" && (
+        <div className="w-full flex gap-4 mb-8">
+          {salesCard.map((data, index) => (
+            <SimpleCard
+              key={index}
+              data={data}
+              isSelected={selectedCardId === index}
+              onSelect={() => handleSelect(index)}
+            />
+          ))}
+        </div>
+      )}
+
+      <button
+        onClick={prevStep}
+        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+      >
+        Prev
+      </button>
+      <button
+        onClick={nextStep}
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        Next
+      </button>
     </div>
-
-    {values.agentType === "Support" && (
-      <div className="w-full flex gap-4 mb-8">
-        {card.map((data, index) => (
-          <SimpleCard
-            key={index}
-            data={data}
-            isSelected={selectedCardId === index}
-            onSelect={() => handleSelect(index, data?.title)}
-          />
-        ))}
-      </div>
-    )}
-
-    {values.agentType === "Audit" && (
-      <div className="w-full flex gap-4 mb-8">
-        {auditCard.map((data, index) => (
-          <SimpleCard
-            key={index}
-            data={data}
-            isSelected={selectedCardId === index}
-            onSelect={() => handleSelect(index)}
-          />
-        ))}
-      </div>
-    )}
-
-    <button
-      onClick={prevStep}
-      className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-    >
-      Prev
-    </button>
-    <button
-      onClick={nextStep}
-      className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-    >
-      Next
-    </button>
-  </div>
   );
 };
 

@@ -1,7 +1,6 @@
 // src/App.js
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Topbar from "./pages/Topbar";
-import Monitor from "./pages/Monitor";
 import Sidebar from "./pages/Sidebar";
 import ManageAgent from "./pages/ManageAgent";
 import ChatHistory from "./pages/ChatHistory";
@@ -10,6 +9,8 @@ import TicketDetail from "./components/table/TicketDetail";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
+import Overview from "./pages/Overview";
+import Monitor from "./pages/Monitor";
 
 function App() {
   const [data, setData] = useState("");
@@ -31,7 +32,7 @@ function App() {
                   <div className="flex-1 flex flex-col">
                     <Topbar />
                     <Routes>
-                      <Route path="/" element={<Monitor />} />
+                      <Route path="/" element={<Overview />} />
                       <Route
                         path="/agents"
                         element={
@@ -40,6 +41,7 @@ function App() {
                       />
                       <Route path="/chat-history" element={<ChatHistory />} />
                       <Route path="/support" element={<Support />} />
+                      <Route path="/monitor" element={<Monitor />} />
                       <Route
                         path="/support/ticket/:id"
                         element={<TicketDetail />}
