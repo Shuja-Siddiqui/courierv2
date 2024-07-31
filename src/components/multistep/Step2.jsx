@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SimpleCard from "../card/SimpleCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
 
 const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
   const [selectedCardId, setSelectedCardId] = useState(null);
@@ -162,16 +163,24 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
       ],
     },
   ];
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/professional-services");
+  };
 
   const agentNames = ["Support", "Sales", "Finance", "Audit", "Bidder"];
   return (
     <div>
-      <div className="flex  justify-center items-center  mb-6">
-        {" "}
-        <h2 className="text-2xl font-bold  text-center text-white">
+      <div className="flex  justify-between items-center mb-6">
+        <div>{""}</div>{" "}
+        <h2 className=" text-2xl font-bold  text-center text-white ml-44">
           Select a Workflow Type
         </h2>
-        <button className="absolute right-20 bg-white text-black font-medium rounded py-2 px-4 hover:bg-gray-900 hover:text-white border border-gray-900 hover:border-white hover:scale-105">
+        <button
+          className="   bg-white text-black font-medium rounded py-2 px-4 hover:bg-gray-900 hover:text-white border border-gray-900 hover:border-white hover:scale-105"
+          onClick={handleClick}
+        >
           Professional Services
         </button>
       </div>
@@ -248,19 +257,34 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
           ))}
         </div>
       )}
-
-      <button
-        onClick={prevStep}
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-      >
-        Prev
-      </button>
-      <button
-        onClick={nextStep}
-        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Next
-      </button>
+      {values.agentType === "Bidder" && (
+        <div className="w-full flex justify-center items-center gap-4 mb-8">
+          <h1 className="text-6xl text-white">Coming Soon</h1>
+        </div>
+      )}
+      {values.agentType === "Finance" && (
+        <div className="w-full flex justify-center items-center gap-4 mb-8">
+          <h1 className="text-6xl text-white">Coming Soon</h1>
+        </div>
+      )}
+      {(values.agentType === "Audit" ||
+        values.agentType === "Support" ||
+        values.agentType === "Sales") && (
+        <div>
+          <button
+            onClick={prevStep}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+          >
+            Prev
+          </button>
+          <button
+            onClick={nextStep}
+            className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

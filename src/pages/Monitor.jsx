@@ -173,7 +173,7 @@ export default function Monitor() {
   const filteredData = selectedRating === "all" ? tableData : tableData.filter((item) => item.rating === selectedRating);
 
   return (
-    <div className="h-[100%] bg-background p-4">
+    <div className="h-[100vh] bg-background p-4">
       <div className="flex justify-center items-center text-white text-5xl gap-2">
         <span>
           <TbHeartRateMonitor className="mt-2" />
@@ -182,7 +182,9 @@ export default function Monitor() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-        {cardsData.map((card, index) => (
+        {cardsData.map((card, index) => ( 
+
+          
           <PodCard
             key={index}
             title={card.title}

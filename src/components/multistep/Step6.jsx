@@ -65,7 +65,7 @@ export default function Step6({
                     : "bg-gray-200"
                 }`}
               >
-                <p>{msg.text}</p>
+                <p className="text-gray-900">{msg.text}</p>
               </div>
             ))}
           </div>

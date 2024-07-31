@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "light-grey": "#00000012",
         "background": "#101010",
+        "cardbackground": "#1A1A1A",
       },
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
