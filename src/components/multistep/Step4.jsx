@@ -98,13 +98,16 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
       )}
 
       {connectionType === "File" && (
-        <div className="mb-4">
-          <input
-            type="file"
-            onChange={handleChange("file")}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
+        <>
+        <h1 className="text-right">Running on alpha version</h1>
+          <div className="mb-4 mt-2">
+            <input
+              type="file"
+              onChange={handleChange("file")}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+        </>
       )}
 
       <button
