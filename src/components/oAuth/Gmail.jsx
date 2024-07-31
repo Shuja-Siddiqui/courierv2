@@ -21,42 +21,52 @@ const Gmail = () => {
           clientId: CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
-          redirect_uri: "https://normal-ai.vercel.app/gmail", // Ensure this matches your registered URI
         })
         .then(() => {
           const authInstance = gapi.auth2.getAuthInstance();
           authInstance.isSignedIn.listen(setSignedIn);
           setSignedIn(authInstance.isSignedIn.get());
-        });
+        })
+        .catch((e) => console.error(e));
     }
     gapi.load("client:auth2", start);
   }, []);
 
   const handleAuthClick = () => {
-    gapi.auth2.getAuthInstance().signIn({
-      ux_mode: "redirect",
-      redirect_uri: "https://normal-ai.vercel.app/gmail", // Ensure this matches your registered URI
-    });
+    gapi.auth2
+      .getAuthInstance()
+      .signIn({
+        ux_mode: "redirect",
+        redirect_uri: "https://normal-ai.vercel.app/gmail",
+      })
+      .catch((e) => console.error(e));
   };
 
   const handleSignoutClick = () => {
-    gapi.auth2.getAuthInstance().signOut();
+    gapi.auth2
+      .getAuthInstance()
+      .signOut()
+      .catch((e) => console.error(e));
   };
 
   const listMessages = async () => {
-    const response = await gapi.client.gmail.users.messages.list({
-      userId: "me",
-      labelIds: "INBOX",
-      maxResults: 10,
-    });
+    const response = await gapi.client.gmail.users.messages
+      .list({
+        userId: "me",
+        labelIds: "INBOX",
+        maxResults: 10,
+      })
+      .catch((e) => console.error(e));
     setEmails(response.result.messages);
   };
 
   const getEmailDetails = async (id) => {
-    const response = await gapi.client.gmail.users.messages.get({
-      userId: "me",
-      id: id,
-    });
+    const response = await gapi.client.gmail.users.messages
+      .get({
+        userId: "me",
+        id: id,
+      })
+      .catch((e) => console.error(e));
     return response.result;
   };
 
