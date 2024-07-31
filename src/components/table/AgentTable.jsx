@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 const AgentTable = ({ topHeading, data }) => {
   return (
     <>
-      <h2 className="text-xl font-bold px-6 mb-4">
+      <h2 className="text-xl font-bold px-6 mb-4 text-white">
         {topHeading ? topHeading : "Active Agents"}
       </h2>
       <div className="bg-gray-800 p-6 rounded-lg shadow-md">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-600">
-            <thead>
+          <table className="min-w-full divide-y divide-gray-600 ">
+            <thead >
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider font-manrope">
                   Agent Name

@@ -10,8 +10,10 @@ import pod7 from "./pod7.jpg";
 import pod8 from "./pod8.webp";
 import pod9 from "./pod9.jpeg";
 import pod10 from "./pod10.jpeg";
+import logoNormal from "./logoNormal.svg"
 
 export { logo };
+export {logoNormal}
 export { normallogo };
 export { pod1 };
 export { pod2 };

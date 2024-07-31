@@ -195,7 +195,7 @@ Analysis schema:
         value={updatedPrompt}
         onChange={(e) => setUpdatedPrompt(e.target.value)}
         rows={5}
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded text-black"
         readOnly={!isEditable}
       ></textarea>
 

@@ -30,16 +30,16 @@ const Sidebar = ({ data }) => {
   };
 
   return (
-    <div className="min-h-[100vh] h-[100%] w-[15%] bg-black text-white flex flex-col overflow-y-auto custom-scrollbar">
-      <div className="flex justify-center items-center px-5">
-        <div className="flex h-[10px] w-full items-center gap-2 text-start px-4 py-5 mt-[25px] rounded-lg bg-gradient-to-br from-background to-gray-500 shadow-lg">
+    <div className="min-h-[100vh] h-[100%] w-[15%] bg-black text-white flex flex-col overflow-y-auto custom-scrollbar fixed">
+      <div className="flex justify-center items-center px-5 w-[15%] fixed  bg-black">
+        <div className="flex h-[10px] w-full justify-center items-center gap-2 text-start px-4 py-5 mt-[25px] rounded-lg bg-gradient-to-br from-background to-gray-800 shadow-lg">
           <img src={normallogo} alt="Logo" className="object-fill" />
           <h1 className="text-[15px] font-bold">Normal</h1>
         </div>
       </div>
-      <div className="p-4 flex-1">
+      <div className="p-4 flex-1 mt-[30%]">
         <div className="mb-4">
-          <div className="mt-2">
+          <div className="">
             <NavLink
               to="/"
               className={({ isActive }) =>

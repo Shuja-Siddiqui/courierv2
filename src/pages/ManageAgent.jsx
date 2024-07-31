@@ -7,6 +7,8 @@ import { selectAgentDetails } from "../redux/agentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmModal from "../components/multistep/ConfirmModal";
 import { setTrue } from "../redux";
+import { TbHeartRateMonitor } from "react-icons/tb";
+import { BiDiamond } from "react-icons/bi";
 
 export default function ManageAgent({ onDataChange }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,11 +85,17 @@ export default function ManageAgent({ onDataChange }) {
   }, [formData?.status]);
 
   return (
-    <div className="h-[685px] bg-background p-4">
-      <div className="w-full flex ">
+    <div className="h-[100vh] bg-background p-4">
+      <div className="w-full flex justify-between ">
+      <div className="flex justify-center items-center text-white text-5xl gap-2">
+        <span>
+          <BiDiamond className="mt-2" />
+        </span>
+        <span>Agents</span>
+      </div>
         <button
           onClick={openModal}
-          className="flex items-center gap-2 bg-white rounded-xl px-5 py-4 shadow-2xl text-gray-700 font-manrope"
+          className="flex items-center gap-2  rounded-xl px-5 py-4 shadow-2xl  font-manrope bg-white text-black font-medium hover:bg-gray-300 hover:scale-105"
         >
           <RiRobot3Line /> Add
         </button>
@@ -118,7 +126,7 @@ export default function ManageAgent({ onDataChange }) {
           )}
         </div>
       ) : (
-        <div>
+        <div className="mt-6">
           <AgentTable data={data} />
         </div>
       )}

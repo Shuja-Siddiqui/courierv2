@@ -20,9 +20,9 @@ const Topbar = () => {
       </button>
 
       <div className="flex items-center space-x-4">
-        <button className="bg-gray-700 px-4 py-2 rounded-lg bg-gradient-to-br border-[1px] border-gray-600 from-gray-500 to-background hover:scale-110 text-white flex items-center shadow-sm shadow-gray-500">
+        {/* <button className="bg-gray-700 px-4 py-2 rounded-lg bg-gradient-to-br border-[1px] border-gray-600 from-gray-500 to-background hover:scale-110 text-white flex items-center shadow-sm shadow-gray-500">
           <span className="">Select date</span>
-        </button>
+        </button> */}
         <button
           className="bg-gray-700 p-2 rounded-lg bg-gradient-to-br border-[1px] border-gray-600 from-gray-500 to-background hover:scale-110 text-white flex items-center shadow-sm shadow-gray-500"
           onClick={handleLogout}

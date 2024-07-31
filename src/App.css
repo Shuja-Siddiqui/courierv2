@@ -4,8 +4,10 @@
 
 .App {
   text-align: center;
+  background-color:#101010 ;
 }
-
+ .body
+{background-color:#101010 ;}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
