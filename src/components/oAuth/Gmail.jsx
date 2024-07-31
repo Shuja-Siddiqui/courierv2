@@ -46,6 +46,7 @@ const Gmail = () => {
 
       console.log("Access Token:", authResponse.access_token);
       console.log("ID Token:", authResponse.id_token);
+      console.log("authResponse", authResponse);
 
       const profile = googleUser.getBasicProfile();
       const account = profile.getEmail();
