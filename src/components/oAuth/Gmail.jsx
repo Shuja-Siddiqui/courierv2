@@ -15,21 +15,23 @@ const Gmail = () => {
 
   useEffect(() => {
     function start() {
-      gapi.client
-        .init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES,
-        })
-        .then(() => {
-          const authInstance = gapi.auth2.getAuthInstance();
-          authInstance.isSignedIn.listen(setSignedIn);
-          setSignedIn(authInstance.isSignedIn.get());
-        })
-        .catch((e) => console.error(e));
+      gapi.load("client:auth2", () => {
+        gapi.client
+          .init({
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
+            discoveryDocs: [DISCOVERY_DOCS],
+            scope: SCOPES,
+          })
+          .then(() => {
+            const authInstance = gapi.auth2.getAuthInstance();
+            authInstance.isSignedIn.listen(setSignedIn);
+            setSignedIn(authInstance.isSignedIn.get());
+          })
+          .catch((e) => console.error(e));
+      });
     }
-    gapi.load("client:auth2", start);
+    start();
   }, []);
 
   const handleAuthClick = async () => {
@@ -37,12 +39,11 @@ const Gmail = () => {
       const authInstance = gapi.auth2.getAuthInstance();
       const googleUser = await authInstance.signIn({
         ux_mode: "popup",
-        prompt: "consent", // ensure refresh token is provided
+        prompt: "consent",
       });
 
       const authResponse = googleUser.getAuthResponse();
 
-      // Log tokens to the console (for demonstration purposes only)
       console.log("Access Token:", authResponse.access_token);
       console.log("ID Token:", authResponse.id_token);
 
@@ -51,13 +52,12 @@ const Gmail = () => {
       const client_id = CLIENT_ID;
       const client_secret = "YOUR_CLIENT_SECRET";
       const expiry = new Date(authResponse.expires_at).toISOString();
-      const refresh_token = authResponse.code; // this may not be directly accessible in frontend, handle backend
+      const refresh_token = authResponse.code;
       const scopes = SCOPES.split(" ");
       const token = authResponse.access_token;
       const token_uri = "https://oauth2.googleapis.com/token";
       const universe_domain = "googleapis.com";
 
-      // Construct token object
       const tokenObject = {
         account,
         client_id,
@@ -72,13 +72,7 @@ const Gmail = () => {
 
       console.log("Token Object:", tokenObject);
 
-      // Send tokens to backend
-      //   await axios.post(
-      //     "https://your-backend-server.com/store-tokens",
-      //     tokenObject
-      //   );
-
-      listMessages(); // Fetch emails after sign-in
+      await listMessages();
     } catch (e) {
       console.error(e);
     }
