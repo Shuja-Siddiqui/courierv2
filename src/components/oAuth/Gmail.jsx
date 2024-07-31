@@ -69,6 +69,10 @@ const Gmail = () => {
       .catch((e) => console.error(e));
     return response.result;
   };
+  const getHeader = (headers, name) => {
+    const header = headers.find((header) => header.name === name);
+    return header ? header.value : "";
+  };
 
   useEffect(() => {
     if (signedIn) {
@@ -84,8 +88,16 @@ const Gmail = () => {
           <h3>Emails:</h3>
           <ul>
             {emails.map((email) => (
-              <li key={email.id} onClick={() => getEmailDetails(email.id)}>
-                Email ID: {email.id}
+              <li key={email.id}>
+                <strong>From:</strong>{" "}
+                {getHeader(email.payload.headers, "From")}
+                <br />
+                <strong>Subject:</strong>{" "}
+                {getHeader(email.payload.headers, "Subject")}
+                <br />
+                <strong>Snippet:</strong> {email.snippet}
+                <br />
+                <hr />
               </li>
             ))}
           </ul>
