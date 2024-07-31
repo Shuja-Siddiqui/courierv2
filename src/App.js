@@ -14,6 +14,8 @@ import Monitor from "./pages/Monitor";
 import SupportTicket from "./components/support/SupportTicket";
 import ProfessionalService from "./pages/ProfessionalService";
 import CoomingSoon from "./pages/CoomingSoon";
+import KnowledgeBase from "./pages/KnowledgeBase";
+import Tools from "./pages/Tools";
 
 function App() {
   const [data, setData] = useState("");
@@ -30,7 +32,14 @@ function App() {
           element={
             <ProtectedRoute
               element={
-                <div className="flex bg-black " style={{ backgroundColor: '#101010', minHeight: '100vh', color: '#fff' }}>
+                <div
+                  className="flex bg-black "
+                  style={{
+                    backgroundColor: "#101010",
+                    minHeight: "100vh",
+                    color: "#fff",
+                  }}
+                >
                   <Sidebar data={data} />
                   <div className="flex-1 flex flex-col w-[85%] ml-[15%] bg-background ">
                     <Topbar />
@@ -45,12 +54,28 @@ function App() {
                       <Route path="/chat-history" element={<ChatHistory />} />
                       <Route path="/support" element={<Support />} />
                       <Route path="/monitor" element={<Monitor />} />
-                      <Route path="support/ticket" element={<SupportTicket />} />
-                      <Route path="/professional-services" element={<ProfessionalService />} />
-                      <Route path="/actions-tools" element={<CoomingSoon />} />
-                      <Route path="/knowledge-base" element={<CoomingSoon />} />
-                      <Route path="/workflow-library" element={<CoomingSoon />} />
-                      <Route path="/approvals-flows" element={<CoomingSoon />} />
+                      <Route
+                        path="support/ticket"
+                        element={<SupportTicket />}
+                      />
+                      <Route
+                        path="/professional-services"
+                        element={<ProfessionalService />}
+                      />
+
+                      <Route
+                        path="/knowledge-base"
+                        element={<KnowledgeBase />}
+                      />
+                      <Route path="/actions-tools" element={<Tools />} />
+                      <Route
+                        path="/workflow-library"
+                        element={<CoomingSoon />}
+                      />
+                      <Route
+                        path="/approvals-flows"
+                        element={<CoomingSoon />}
+                      />
                       <Route path="/task-history" element={<CoomingSoon />} />
                       <Route path="/settings" element={<CoomingSoon />} />
                       {/* <Route

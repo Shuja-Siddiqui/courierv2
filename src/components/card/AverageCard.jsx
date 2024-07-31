@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // const Card = ({ title, value, change }) => {
 //   return (
@@ -15,7 +16,19 @@ import React from "react";
 //   { title: "Escalated Tickets", value: 7.7 },
 // ];
 
-const AverageCard = () => {
+const AverageCard = () => {  
+  const navigate = useNavigate();
+
+  const handleKnowledgeClick = () => {
+    navigate("/knowledge-base");
+  };
+  const handleToolsClick = () => {
+    navigate("/actions-tools");
+  };
+  const handleAgentClick = () => {
+    navigate("/agents");
+  };
+
   return (
     <div className="flex flex-col gap-4 w-[100%]">
       {/* 1 */}
@@ -27,7 +40,7 @@ const AverageCard = () => {
           Upload or connect files, docs & more to give agents business context
         </div>
         <div className=" flex justify-end mt-4">
-          <button className="bg-cardbackground px-4 py-2  border-[0.5px] border-gray-700 rounded-md ">
+          <button className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md " onClick={handleKnowledgeClick}>
             Setup now
           </button>
         </div>
@@ -41,7 +54,7 @@ const AverageCard = () => {
           Integrate your TMS, load boards email & more for agents work with your existing tools
         </div>
         <div className=" flex justify-end mt-4">
-          <button className="bg-cardbackground px-4 py-2  border-[0.5px] border-gray-700 rounded-md ">
+          <button className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md " onClick={handleToolsClick}>
             Setup now
           </button>
         </div>
@@ -54,7 +67,7 @@ const AverageCard = () => {
           Make your agents available to employees and customers across your website, email & more
         </div>
         <div className=" flex justify-end mt-4">
-          <button className="bg-cardbackground px-4 py-2  border-[0.5px] border-gray-700 rounded-md ">
+          <button className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md " onClick={handleAgentClick}>
             Setup now
           </button>
         </div>
