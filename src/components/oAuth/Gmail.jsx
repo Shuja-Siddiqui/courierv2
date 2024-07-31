@@ -35,20 +35,24 @@ const Gmail = () => {
   const handleAuthClick = async () => {
     try {
       const authInstance = gapi.auth2.getAuthInstance();
-      await authInstance.signIn({
-        ux_mode: "redirect",
-        redirect_uri: "https://normal-ai.vercel.app/gmail",
+      const googleUser = await authInstance.signIn({
+        ux_mode: "popup",
       });
 
-      const googleUser = authInstance.currentUser.get();
       const authResponse = googleUser.getAuthResponse();
-      const idToken = authResponse.id_token; // ID token for verification if needed
+
+      // Log tokens to the console (for demonstration purposes only)
+      console.log("Access Token:", authResponse.access_token);
+      console.log("ID Token:", authResponse.id_token);
+      console.log("Refresh Token:", authResponse.refresh_token);
 
       // Send tokens to backend
-      console.log({
-        accessToken: authResponse.access_token,
-        refreshToken: authResponse.refresh_token, // make sure you have offline access to get refresh token
-      });
+      //   await axios.post("https://your-backend-server.com/store-tokens", {
+      //     accessToken: authResponse.access_token,
+      //     refreshToken: authResponse.refresh_token, // make sure you have offline access to get refresh token
+      //   });
+
+      listMessages(); // Fetch emails after sign-in
     } catch (e) {
       console.error(e);
     }
