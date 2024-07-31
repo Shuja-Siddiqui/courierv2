@@ -21,6 +21,7 @@ const Gmail = () => {
           clientId: CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
+          redirect_uri: "https://normal-ai.vercel.app/gmail", // Ensure this matches your registered URI
         })
         .then(() => {
           const authInstance = gapi.auth2.getAuthInstance();
@@ -31,14 +32,10 @@ const Gmail = () => {
     gapi.load("client:auth2", start);
   }, []);
 
-  //   const handleAuthClick = () => {
-  //     gapi.auth2.getAuthInstance().signIn();
-  //   };
-
   const handleAuthClick = () => {
     gapi.auth2.getAuthInstance().signIn({
       ux_mode: "redirect",
-      redirect_uri: "https://normal-ai.vercel.app/gmail", // Use your redirect URI here
+      redirect_uri: "https://normal-ai.vercel.app/gmail", // Ensure this matches your registered URI
     });
   };
 
@@ -84,9 +81,7 @@ const Gmail = () => {
           </ul>
         </div>
       ) : (
-        <button style={{ color: "white" }} onClick={handleAuthClick}>
-          Sign In
-        </button>
+        <button onClick={handleAuthClick}>Sign In</button>
       )}
     </div>
   );
