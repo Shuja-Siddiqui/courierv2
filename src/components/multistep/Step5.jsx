@@ -16,6 +16,9 @@ const Step5 = ({
     Email: false,
   });
   const technologies = ["React", "Angular", "Vue", "Svelte", "Ember"];
+  const emailTech = ["Google", "Outlook", "Email Server", "Hotmail"];
+  const [emailType, setEmailType] = useState("");
+  const [websiteTechnology, setWebsiteTechnology] = useState("");
 
   const handleConnectionTypeSelection = (type) => {
     setSelectedConnections((prevSelected) => ({
@@ -208,9 +211,21 @@ const Step5 = ({
           <div className="w-full flex justify-center">
             {selectedConnections.Website === true && (
               <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+                <h1 className="text-white text-lg font-bold">
+                  Website Deployment
+                </h1>
+              </div>
+            )}
+          </div>
+
+          <div className="w-full flex justify-center">
+            {selectedConnections.Website === true && (
+              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
                 {technologies.map((tech) => (
                   <button
                     key={tech}
+                    type="button"
+                    onClick={() => setWebsiteTechnology(tech)}
                     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   >
                     {tech}
@@ -221,234 +236,277 @@ const Step5 = ({
           </div>
 
           <div className="w-full flex justify-center">
-            {selectedConnections.Website === true && (
-              <div>
-                <h2 className="text-white text-xl font-bold mb-4">
-                  Your Chatbot Code
-                </h2>
-                <textarea
-                  readOnly
-                  value={codeSnippet}
-                  rows={5}
-                  className="w-full p-2 border rounded"
-                ></textarea>
-                <h3 className="text-white text-lg font-bold mt-4">
-                  Instructions:
-                </h3>
-                <div className="text-white w-full h-[100px] overflow-y-scroll">
-                  <p className="mt-2 text-sm font-semibold">
-                    Copy and paste the above code into your website's HTML to
-                    add the chatbot button.
-                  </p>
+            {selectedConnections.Website === true &&
+              (websiteTechnology === "React" ? (
+                <div>
+                  <h2 className="text-white text-xl font-bold mb-4">
+                    Your Chatbot Code
+                  </h2>
+                  <textarea
+                    readOnly
+                    value={codeSnippet}
+                    rows={5}
+                    className="w-full p-2 border rounded text-gray-900"
+                  ></textarea>
+                  <h3 className="text-white text-lg font-bold mt-4">
+                    Instructions:
+                  </h3>
+                  <div className="text-white w-full h-[100px] overflow-y-scroll">
+                    <p className="mt-2 text-sm font-semibold">
+                      Copy and paste the above code into your website's HTML to
+                      add the chatbot button.
+                    </p>
 
-                  <ol className="list-decimal list-inside text-sm mt-2">
-                    <li>
-                      Open your website's HTML file where you want the chatbot
-                      button to appear.
-                    </li>
-                    <li>
-                      Paste the entire code snippet before the closing{" "}
-                      <code>&lt;/body&gt;</code> tag.
-                    </li>
-                    <li>
-                      Save the changes to your HTML file and open your website
-                      in a browser to see the chatbot button in the bottom right
-                      corner.
-                    </li>
-                    <li>
-                      Click the "Chat" button to open the chatbot modal and
-                      interact with it.
-                    </li>
-                  </ol>
+                    <ol className="list-decimal list-inside text-sm mt-2">
+                      <li>
+                        Open your website's HTML file where you want the chatbot
+                        button to appear.
+                      </li>
+                      <li>
+                        Paste the entire code snippet before the closing{" "}
+                        <code>&lt;/body&gt;</code> tag.
+                      </li>
+                      <li>
+                        Save the changes to your HTML file and open your website
+                        in a browser to see the chatbot button in the bottom
+                        right corner.
+                      </li>
+                      <li>
+                        Click the "Chat" button to open the chatbot modal and
+                        interact with it.
+                      </li>
+                    </ol>
+                  </div>
                 </div>
+              ) : (
+                <>
+                  <h1 className="text-6xl text-white">
+                    Available on alpha version
+                  </h1>
+                </>
+              ))}
+          </div>
+
+          <div className="w-full flex justify-center">
+            {selectedConnections.Email === true && (
+              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+                <h1 className="text-white text-lg font-bold">
+                  Email Deployment
+                </h1>
               </div>
             )}
           </div>
 
           <div className="w-full flex justify-center">
             {selectedConnections.Email === true && (
-              <div className="flex flex-col">
-                {/* 1 */}
-                <div className="text-white flex flex-col p-6 bg-gray-800 rounded-lg">
-                  <div className="mb-4">
-                    <input
-                      type="text"
-                      placeholder="Enter Client Secret"
-                      value={emailData.clientSecret}
-                      onChange={handleEmail("clientSecret")}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <input
-                      type="text"
-                      placeholder="Enter Refresh Token"
-                      value={emailData.refreshToken}
-                      onChange={handleEmail("refreshToken")}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                  </div>
-                </div>
-
-                {/* 2 */}
-                <h3 className="text-white text-lg font-bold mt-4">
-                  Instructions to Obtain Google Client ID and Refresh Token
-                </h3>
-                <div className="text-white w-full h-[100px] overflow-y-scroll">
-                  <p className="mt-2 text-sm font-semibold">
-                    Follow these steps to get your Google Client ID and refresh
-                    token for your application:
-                  </p>
-                  <ol className="list-decimal list-inside text-sm mt-2">
-                    <li>
-                      **Create a Project in Google Cloud Console:**
-                      <ul className="list-disc list-inside mt-1">
-                        <li>
-                          Go to the{" "}
-                          <a
-                            href="https://console.cloud.google.com/"
-                            className="text-blue-400"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            // style={{ color: "green" }}
-                          >
-                            Google Cloud Console
-                          </a>
-                          .
-                        </li>
-                        <li>
-                          Click on "Select a Project" at the top of the page.
-                        </li>
-                        <li>
-                          Click "New Project" and fill in the required details
-                          to create a new project.
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      **Enable the Gmail API:**
-                      <ul className="list-disc list-inside mt-1">
-                        <li>
-                          In your Google Cloud project, go to the{" "}
-                          <a
-                            href="https://console.cloud.google.com/apis/library"
-                            className="text-blue-400"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            API Library
-                          </a>
-                          .
-                        </li>
-                        <li>Search for "Gmail API" and click on it.</li>
-                        <li>
-                          Click "Enable" to enable the Gmail API for your
-                          project.
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      **Create OAuth 2.0 Credentials:**
-                      <ul className="list-disc list-inside mt-1">
-                        <li>
-                          Go to the{" "}
-                          <a
-                            href="https://console.cloud.google.com/apis/credentials"
-                            className="text-blue-400"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Credentials Page
-                          </a>
-                          .
-                        </li>
-                        <li>
-                          Click on "Create Credentials" and select "OAuth Client
-                          ID".
-                        </li>
-                        <li>
-                          If prompted, configure the OAuth consent screen with
-                          required details.
-                        </li>
-                        <li>
-                          Choose "Web application" for the application type.
-                        </li>
-                        <li>
-                          Set up "Authorized JavaScript origins" and "Authorized
-                          redirect URIs" as needed. For example:
-                          <ul className="list-disc list-inside mt-1">
-                            <li>
-                              Authorized JavaScript origins:{" "}
-                              <code>https://yourdomain.com</code>
-                            </li>
-                            <li>
-                              Authorized redirect URIs:{" "}
-                              <code>https://yourdomain.com/oauth2callback</code>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          Click "Create" and note down your{" "}
-                          <strong>Client ID</strong> and{" "}
-                          <strong>Client Secret</strong>.
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      **Obtain Refresh Token (Using OAuth 2.0 Authorization Code
-                      Flow):**
-                      <ul className="list-disc list-inside mt-1">
-                        <li>
-                          Use an OAuth 2.0 library or tool to handle the
-                          authorization code flow, such as{" "}
-                          <a
-                            href="https://developers.google.com/identity/protocols/oauth2"
-                            className="text-blue-400"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Google's OAuth2 documentation
-                          </a>
-                          .
-                        </li>
-                        <li>
-                          Generate an authorization URL using your client ID and
-                          secret, and include the `access_type=offline`
-                          parameter to request a refresh token.
-                        </li>
-                        <li>
-                          Direct the user to this authorization URL to log in
-                          and authorize your application.
-                        </li>
-                        <li>
-                          After authorization, you will receive an authorization
-                          code. Exchange this code for tokens using a POST
-                          request to Google's token endpoint:
-                        </li>
-                        <ul className="list-disc list-inside mt-1">
-                          <li>
-                            Endpoint:{" "}
-                            <code>https://oauth2.googleapis.com/token</code>
-                          </li>
-                          <li>
-                            Parameters: <code>code</code>,{" "}
-                            <code>client_id</code>, <code>client_secret</code>,{" "}
-                            <code>redirect_uri</code>,{" "}
-                            <code>grant_type=authorization_code</code>
-                          </li>
-                        </ul>
-                        <li>
-                          In the response, you will get the{" "}
-                          <strong>access token</strong> and{" "}
-                          <strong>refresh token</strong>. Note them down
-                          securely.
-                        </li>
-                      </ul>
-                    </li>
-                  </ol>
-                </div>
+              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+                {emailTech.map((tech) => (
+                  <button
+                    key={tech}
+                    type="button"
+                    onClick={() => setEmailType(tech)}
+                    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    {tech}
+                  </button>
+                ))}
               </div>
             )}
+          </div>
+
+          <div className="w-full flex justify-center">
+            {selectedConnections.Email === true &&
+              (emailType === "Google" ? (
+                <div className="flex flex-col">
+                  {/* 1 */}
+                  <div className="text-white flex flex-col p-6 bg-gray-800 rounded-lg">
+                    <div className="mb-4">
+                      <input
+                        type="text"
+                        placeholder="Enter Client Secret"
+                        value={emailData.clientSecret}
+                        onChange={handleEmail("clientSecret")}
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <input
+                        type="text"
+                        placeholder="Enter Refresh Token"
+                        value={emailData.refreshToken}
+                        onChange={handleEmail("refreshToken")}
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 2 */}
+                  <h3 className="text-white text-lg font-bold mt-4">
+                    Instructions to Obtain Google Client ID and Refresh Token
+                  </h3>
+                  <div className="text-white w-full h-[100px] overflow-y-scroll">
+                    <p className="mt-2 text-sm font-semibold">
+                      Follow these steps to get your Google Client ID and
+                      refresh token for your application:
+                    </p>
+                    <ol className="list-decimal list-inside text-sm mt-2">
+                      <li>
+                        **Create a Project in Google Cloud Console:**
+                        <ul className="list-disc list-inside mt-1">
+                          <li>
+                            Go to the{" "}
+                            <a
+                              href="https://console.cloud.google.com/"
+                              className="text-blue-400"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              // style={{ color: "green" }}
+                            >
+                              Google Cloud Console
+                            </a>
+                            .
+                          </li>
+                          <li>
+                            Click on "Select a Project" at the top of the page.
+                          </li>
+                          <li>
+                            Click "New Project" and fill in the required details
+                            to create a new project.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        **Enable the Gmail API:**
+                        <ul className="list-disc list-inside mt-1">
+                          <li>
+                            In your Google Cloud project, go to the{" "}
+                            <a
+                              href="https://console.cloud.google.com/apis/library"
+                              className="text-blue-400"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              API Library
+                            </a>
+                            .
+                          </li>
+                          <li>Search for "Gmail API" and click on it.</li>
+                          <li>
+                            Click "Enable" to enable the Gmail API for your
+                            project.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        **Create OAuth 2.0 Credentials:**
+                        <ul className="list-disc list-inside mt-1">
+                          <li>
+                            Go to the{" "}
+                            <a
+                              href="https://console.cloud.google.com/apis/credentials"
+                              className="text-blue-400"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Credentials Page
+                            </a>
+                            .
+                          </li>
+                          <li>
+                            Click on "Create Credentials" and select "OAuth
+                            Client ID".
+                          </li>
+                          <li>
+                            If prompted, configure the OAuth consent screen with
+                            required details.
+                          </li>
+                          <li>
+                            Choose "Web application" for the application type.
+                          </li>
+                          <li>
+                            Set up "Authorized JavaScript origins" and
+                            "Authorized redirect URIs" as needed. For example:
+                            <ul className="list-disc list-inside mt-1">
+                              <li>
+                                Authorized JavaScript origins:{" "}
+                                <code>https://yourdomain.com</code>
+                              </li>
+                              <li>
+                                Authorized redirect URIs:{" "}
+                                <code>
+                                  https://yourdomain.com/oauth2callback
+                                </code>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            Click "Create" and note down your{" "}
+                            <strong>Client ID</strong> and{" "}
+                            <strong>Client Secret</strong>.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        **Obtain Refresh Token (Using OAuth 2.0 Authorization
+                        Code Flow):**
+                        <ul className="list-disc list-inside mt-1">
+                          <li>
+                            Use an OAuth 2.0 library or tool to handle the
+                            authorization code flow, such as{" "}
+                            <a
+                              href="https://developers.google.com/identity/protocols/oauth2"
+                              className="text-blue-400"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Google's OAuth2 documentation
+                            </a>
+                            .
+                          </li>
+                          <li>
+                            Generate an authorization URL using your client ID
+                            and secret, and include the `access_type=offline`
+                            parameter to request a refresh token.
+                          </li>
+                          <li>
+                            Direct the user to this authorization URL to log in
+                            and authorize your application.
+                          </li>
+                          <li>
+                            After authorization, you will receive an
+                            authorization code. Exchange this code for tokens
+                            using a POST request to Google's token endpoint:
+                          </li>
+                          <ul className="list-disc list-inside mt-1">
+                            <li>
+                              Endpoint:{" "}
+                              <code>https://oauth2.googleapis.com/token</code>
+                            </li>
+                            <li>
+                              Parameters: <code>code</code>,{" "}
+                              <code>client_id</code>, <code>client_secret</code>
+                              , <code>redirect_uri</code>,{" "}
+                              <code>grant_type=authorization_code</code>
+                            </li>
+                          </ul>
+                          <li>
+                            In the response, you will get the{" "}
+                            <strong>access token</strong> and{" "}
+                            <strong>refresh token</strong>. Note them down
+                            securely.
+                          </li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <h1 className="text-6xl text-white">
+                    Available on alpha version
+                  </h1>
+                </>
+              ))}
           </div>
         </div>
       ) : values?.agentType === "Audit" ? (

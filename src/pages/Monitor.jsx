@@ -2,7 +2,20 @@ import React, { useState } from "react";
 import { FaEye, FaFilter, FaTimes } from "react-icons/fa";
 import { TbHeartRateMonitor } from "react-icons/tb";
 import { VscActivateBreakpoints } from "react-icons/vsc";
-import { pod1, pod10, pod2, pod3, pod4, pod5, pod6, pod7, pod8, pod9 } from "../assets/images";
+import {
+  pod1,
+  pod10,
+  pod2,
+  pod3,
+  pod4,
+  pod5,
+  pod6,
+  pod7,
+  pod8,
+  pod9,
+} from "../assets/images";
+import { selectAgentDetails } from "../redux/agentSlice";
+import { useSelector } from "react-redux";
 
 // Static data with placeholder images
 const data = [
@@ -47,12 +60,21 @@ const PodCard = ({ title, isActive, onToggleActive, onView }) => {
   );
 };
 
-const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange, onImageClick }) => {
+const Table = ({
+  data,
+  onFilterChange,
+  selectedRating,
+  currentPage,
+  onPageChange,
+  onImageClick,
+}) => {
   const rowsPerPage = 6;
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
   const handleRatingChange = (event) => {
-    onFilterChange(event.target.value === "all" ? "all" : Number(event.target.value));
+    onFilterChange(
+      event.target.value === "all" ? "all" : Number(event.target.value)
+    );
   };
 
   const handlePageChange = (direction) => {
@@ -63,7 +85,10 @@ const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange
     }
   };
 
-  const paginatedData = data.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+  const paginatedData = data.slice(
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
+  );
 
   return (
     <section className="container px-4 mx-auto mt-4">
@@ -73,34 +98,61 @@ const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange
             <div className="overflow-hidden border border-gray-700 md:rounded-lg">
               <div className="flex justify-between items-center bg-gray-800 p-4">
                 <span className="text-white">Filter by Rating: </span>
-                <button value={selectedRating} onChange={handleRatingChange} className="text-black bg">
+                <button
+                  value={selectedRating}
+                  onChange={handleRatingChange}
+                  className="text-black bg"
+                >
                   <div className="text-white bg-slate-700 flex items-center px-2 py-1">
-                  <FaFilter/>
-                  <select className="bg-transparent" >
-                  <option value="all" className="bg-slate-500 px-2 py-1">All</option>
-                  {[...Array(10).keys()].map((n) => (
-                    <option key={n + 1} value={n + 1} className="bg-slate-500 px-2 py-1">
-                      {n + 1}
-                    </option>
-                  ))}
-                  </select>
+                    <FaFilter />
+                    <select className="bg-transparent">
+                      <option value="all" className="bg-slate-500 px-2 py-1">
+                        All
+                      </option>
+                      {[...Array(10).keys()].map((n) => (
+                        <option
+                          key={n + 1}
+                          value={n + 1}
+                          className="bg-slate-500 px-2 py-1"
+                        >
+                          {n + 1}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </button>
               </div>
               <table className="min-w-full divide-y divide-gray-700">
                 <thead className="bg-gray-800">
                   <tr>
-                    <th className="py-3.5 px-4 text-sm font-normal text-left text-gray-400">Driver-Id</th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-400">Order-Id</th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-400">Proof of Delivery</th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-400">Rating</th>
+                    <th className="py-3.5 px-4 text-sm font-normal text-left text-gray-400">
+                      Driver-Id
+                    </th>
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-400">
+                      Order-Id
+                    </th>
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-400">
+                      Proof of Delivery
+                    </th>
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-400">
+                      Rating
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-gray-900 divide-y divide-gray-700">
                   {paginatedData.map((item, index) => (
-                    <tr key={index} className={index % 2 === 0 ? "bg-gray-700" : "bg-gray-600"}>
-                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.driverId}</td>
-                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.orderId}</td>
+                    <tr
+                      key={index}
+                      className={
+                        index % 2 === 0 ? "bg-gray-700" : "bg-gray-600"
+                      }
+                    >
+                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
+                        {item.driverId}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
+                        {item.orderId}
+                      </td>
                       <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
                         <img
                           src={item.pod}
@@ -109,7 +161,9 @@ const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange
                           onClick={() => onImageClick(item.pod)}
                         />
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">{item.rating}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap">
+                        {item.rating}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -142,7 +196,10 @@ const Table = ({ data, onFilterChange, selectedRating, currentPage, onPageChange
 };
 
 export default function Monitor() {
-  const [cardsData] = useState([{ title: "POD Audit 3.1" }, { title: "POD Audit Beta" }]);
+  const [cardsData] = useState([
+    { title: "POD Audit 3.1" },
+    { title: "POD Audit Beta" },
+  ]);
   const [activeCard, setActiveCard] = useState(null);
   const [viewedCard, setViewedCard] = useState(null);
   const [tableData] = useState(data);
@@ -150,6 +207,8 @@ export default function Monitor() {
   const [currentPage, setCurrentPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const agents = useSelector(selectAgentDetails);
+  const auditAgents = agents?.filter((agent) => agent.agentType === "Audit");
 
   const handleToggleActive = (index) => {
     setActiveCard(index === activeCard ? null : index);
@@ -170,7 +229,10 @@ export default function Monitor() {
     setModalImage(null);
   };
 
-  const filteredData = selectedRating === "all" ? tableData : tableData.filter((item) => item.rating === selectedRating);
+  const filteredData =
+    selectedRating === "all"
+      ? tableData
+      : tableData.filter((item) => item.rating === selectedRating);
 
   return (
     <div className="h-[100%] bg-background p-4">
@@ -182,9 +244,7 @@ export default function Monitor() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-        {cardsData.map((card, index) => ( 
-
-          
+        {cardsData.map((card, index) => (
           <PodCard
             key={index}
             title={card.title}
@@ -211,14 +271,21 @@ export default function Monitor() {
           className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50"
           onClick={handleCloseModal}
         >
-          <div className="relative bg-gray-900 p-4 rounded-lg shadow-lg" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative bg-gray-900 p-4 rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="absolute top-2 right-2 text-white"
               onClick={handleCloseModal}
             >
               <FaTimes size={20} />
             </button>
-            <img src={modalImage} alt="Modal Proof of Delivery" className="w-[500px] h-[400px]" />
+            <img
+              src={modalImage}
+              alt="Modal Proof of Delivery"
+              className="w-[500px] h-[400px]"
+            />
           </div>
         </div>
       )}
