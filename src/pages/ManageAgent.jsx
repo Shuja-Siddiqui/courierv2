@@ -24,9 +24,8 @@ export default function ManageAgent({ onDataChange }) {
     externalModel: "",
   });
   const [emailData, setEmailData] = useState({
-    email: "",
-    password: "",
-    iMap: "",
+    clientSecret: "",
+    refreshToken: "",
   });
   const [isTesting, setIsTesting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -35,6 +34,7 @@ export default function ManageAgent({ onDataChange }) {
 
   const handleModalClose = (response) => {
     setConfirmModalOpen(false);
+    console.log("emailData", emailData);
     // console.log("response", response);
     if (response === "yes") {
       dispatch(setTrue());
