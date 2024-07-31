@@ -12,7 +12,6 @@ import { useState } from "react";
 import Overview from "./pages/Overview";
 import Monitor from "./pages/Monitor";
 import SupportTicket from "./components/support/SupportTicket";
-import Gmail from "./components/oAuth/Gmail";
 
 function App() {
   const [data, setData] = useState("");
@@ -45,7 +44,6 @@ function App() {
                       <Route path="/support" element={<Support />} />
                       <Route path="/monitor" element={<Monitor />} />
                       <Route path="support/ticket" element={<SupportTicket />} />
-                      <Route path="/gmail" element={<Gmail />} />
                       {/* <Route
                         path="/support/ticket/:id"
                         element={<TicketDetail />}
