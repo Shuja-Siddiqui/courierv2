@@ -31,8 +31,15 @@ const Gmail = () => {
     gapi.load("client:auth2", start);
   }, []);
 
+  //   const handleAuthClick = () => {
+  //     gapi.auth2.getAuthInstance().signIn();
+  //   };
+
   const handleAuthClick = () => {
-    gapi.auth2.getAuthInstance().signIn();
+    gapi.auth2.getAuthInstance().signIn({
+      ux_mode: "redirect",
+      redirect_uri: "https://normal-ai.vercel.app/gmail", // Use your redirect URI here
+    });
   };
 
   const handleSignoutClick = () => {
