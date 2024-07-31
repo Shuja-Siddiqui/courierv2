@@ -37,6 +37,7 @@ const Gmail = () => {
       const authInstance = gapi.auth2.getAuthInstance();
       const googleUser = await authInstance.signIn({
         ux_mode: "popup",
+        prompt: "consent", // ensure refresh token is provided
       });
 
       const authResponse = googleUser.getAuthResponse();
@@ -44,13 +45,38 @@ const Gmail = () => {
       // Log tokens to the console (for demonstration purposes only)
       console.log("Access Token:", authResponse.access_token);
       console.log("ID Token:", authResponse.id_token);
-      console.log("Refresh Token:", authResponse.refresh_token);
+
+      const profile = googleUser.getBasicProfile();
+      const account = profile.getEmail();
+      const client_id = CLIENT_ID;
+      const client_secret = "YOUR_CLIENT_SECRET";
+      const expiry = new Date(authResponse.expires_at).toISOString();
+      const refresh_token = authResponse.code; // this may not be directly accessible in frontend, handle backend
+      const scopes = SCOPES.split(" ");
+      const token = authResponse.access_token;
+      const token_uri = "https://oauth2.googleapis.com/token";
+      const universe_domain = "googleapis.com";
+
+      // Construct token object
+      const tokenObject = {
+        account,
+        client_id,
+        client_secret,
+        expiry,
+        refresh_token,
+        scopes,
+        token,
+        token_uri,
+        universe_domain,
+      };
+
+      console.log("Token Object:", tokenObject);
 
       // Send tokens to backend
-      //   await axios.post("https://your-backend-server.com/store-tokens", {
-      //     accessToken: authResponse.access_token,
-      //     refreshToken: authResponse.refresh_token, // make sure you have offline access to get refresh token
-      //   });
+      //   await axios.post(
+      //     "https://your-backend-server.com/store-tokens",
+      //     tokenObject
+      //   );
 
       listMessages(); // Fetch emails after sign-in
     } catch (e) {
