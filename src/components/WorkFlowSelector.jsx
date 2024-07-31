@@ -198,6 +198,10 @@ const WorkFlowSelector = ({ setFormData }) => {
             isTesting ? "bg-blue-300" : "bg-blue-500"
           } text-white px-4 py-2 rounded mb-2`}
           disabled={isTesting}
+          // style={{
+          //   background:
+          //     "linear-gradient(349deg, rgba(2,0,36,1) 0%, rgba(9,121,20,1) 51%)",
+          // }}
         >
           {isTesting ? (
             <svg
@@ -231,7 +235,7 @@ const WorkFlowSelector = ({ setFormData }) => {
       {successMessage.includes("Connected Successfully") && (
         <button
           onClick={openModal}
-          className="bg-gray-400 text-white px-4 py-2 rounded mb-2 hover:bg-gray-600"
+          className="bg-blue-500  text-white px-4 py-2 rounded mb-2 hover:bg-blue-300"
         >
           Test {selectedWorkFlow} Bot
         </button>

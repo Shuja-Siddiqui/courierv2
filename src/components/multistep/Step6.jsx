@@ -33,8 +33,16 @@ export default function Step6({
     setInput("");
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      sendMessage(event);
+    }
+  };
+
   const handleConnection = () => {
-    setConnectionStatus("Successfully connected. The first email analyzer is following");
+    setConnectionStatus(
+      "Successfully connected"
+    );
   };
   return (
     <>
@@ -72,12 +80,13 @@ export default function Step6({
           <footer className="bg-card rounded-b-2xl p-4 flex items-center gap-2">
             <form className="flex-1" onSubmit={sendMessage}>
               <input
-                className="flex h-10 rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full font-manrope"
+                className="flex h-10 rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full font-manrope text-gray-900"
                 id="message"
                 placeholder="Type your message..."
                 autoComplete="off"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </form>
             <button
@@ -115,7 +124,7 @@ export default function Step6({
           >
             Check Connection
           </button>
-          <p className="text-gray-400 text-xl mt-2">{connectionStatus}</p>
+          <p className="text-green-400 text-xl mt-2">{connectionStatus}</p>
         </div>
       </div>
 

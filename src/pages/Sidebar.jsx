@@ -29,6 +29,8 @@ const Sidebar = ({ data }) => {
     setIsSupportOpen(!isSupportOpen);
   };
 
+  const auditAgents = agents?.filter((agent) => agent.agentType === "Audit");
+
   return (
     <div className="min-h-[100vh] h-[100%] w-[15%] bg-black text-white flex flex-col overflow-y-auto custom-scrollbar fixed">
       <div className="flex justify-center items-center px-5 w-[15%] fixed  bg-black">
@@ -97,7 +99,7 @@ const Sidebar = ({ data }) => {
                       <FaHistory />
                       <span>Chat History</span>
                     </NavLink>
-                    <NavLink
+                    {/* <NavLink
                       to="/support"
                       className={({ isActive }) =>
                         isActive
@@ -108,7 +110,7 @@ const Sidebar = ({ data }) => {
                       <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
                       <FaUser />
                       <span>Support</span>
-                    </NavLink>
+                    </NavLink> */}
                   </div>
                 </div>
               )}
@@ -163,17 +165,19 @@ const Sidebar = ({ data }) => {
               <div className="relative">
                 <div className="absolute left-2 h-full border-l-2 border-gray-700"></div>
                 <div className="">
-                  <NavLink
-                    to="/monitor"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
-                        : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-                    }
-                  >
-                    <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
-                    <span>Monitor</span>
-                  </NavLink>
+                  {auditAgents && auditAgents.length > 0 && (
+                    <NavLink
+                      to="/monitor"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                          : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                      }
+                    >
+                      <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                      <span>Monitor</span>
+                    </NavLink>
+                  )}
                   <NavLink
                     to="/workflow-library"
                     className={({ isActive }) =>
