@@ -45,7 +45,7 @@ function App() {
                       <Route path="/support" element={<Support />} />
                       <Route path="/monitor" element={<Monitor />} />
                       <Route path="support/ticket" element={<SupportTicket />} />
-                      <Route path="/gmail-test" element={<Gmail />} />
+                      <Route path="/gmail" element={<Gmail />} />
                       {/* <Route
                         path="/support/ticket/:id"
                         element={<TicketDetail />}
