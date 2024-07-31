@@ -40,7 +40,7 @@ const PodCard = ({ title, isActive, onToggleActive, onView }) => {
           className={`flex justify-center items-center gap-2 text-white rounded-lg px-4 py-2 ${
             isActive ? "bg-green-900" : "bg-gray-800"
           }`}
-          onClick={onToggleActive}
+          // onClick={onToggleActive}
         >
           <VscActivateBreakpoints className="rotate-180" />
           {isActive ? "Activated" : "Activate"}
@@ -244,15 +244,20 @@ export default function Monitor() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-        {cardsData.map((card, index) => (
-          <PodCard
-            key={index}
-            title={card.title}
-            isActive={index === activeCard}
-            onToggleActive={() => handleToggleActive(index)}
-            onView={() => handleView(index)}
-          />
-        ))}
+        {cardsData.map((card, index) => {
+          const matchingAgent = auditAgents.find(
+            (agent) => agent.externalModel === card.title
+          );
+          return (
+            <PodCard
+              key={index}
+              title={card.title}
+              isActive={Boolean(matchingAgent)} // Check if there is a matching agent
+              onToggleActive={() => handleToggleActive(index)}
+              onView={() => handleView(index)}
+            />
+          );
+        })}
       </div>
 
       {viewedCard !== null && (
