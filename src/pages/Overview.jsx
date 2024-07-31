@@ -14,7 +14,6 @@ const Overview = () => {
         <ChatHistoryTable />
         <TaskHistory />
       </div>
-      <Gmail />
     </div>
   );
 };
