@@ -32,14 +32,26 @@ const Gmail = () => {
     gapi.load("client:auth2", start);
   }, []);
 
-  const handleAuthClick = () => {
-    gapi.auth2
-      .getAuthInstance()
-      .signIn({
+  const handleAuthClick = async () => {
+    try {
+      const authInstance = gapi.auth2.getAuthInstance();
+      await authInstance.signIn({
         ux_mode: "redirect",
         redirect_uri: "https://normal-ai.vercel.app/gmail",
-      })
-      .catch((e) => console.error(e));
+      });
+
+      const googleUser = authInstance.currentUser.get();
+      const authResponse = googleUser.getAuthResponse();
+      const idToken = authResponse.id_token; // ID token for verification if needed
+
+      // Send tokens to backend
+      console.log({
+        accessToken: authResponse.access_token,
+        refreshToken: authResponse.refresh_token, // make sure you have offline access to get refresh token
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleSignoutClick = () => {
@@ -50,25 +62,30 @@ const Gmail = () => {
   };
 
   const listMessages = async () => {
-    const response = await gapi.client.gmail.users.messages
-      .list({
+    try {
+      const response = await gapi.client.gmail.users.messages.list({
         userId: "me",
         labelIds: "INBOX",
         maxResults: 10,
-      })
-      .catch((e) => console.error(e));
-    setEmails(response.result.messages);
+      });
+      const messages = response.result.messages;
+
+      const emailDetails = await Promise.all(
+        messages.map(async (message) => {
+          const msg = await gapi.client.gmail.users.messages.get({
+            userId: "me",
+            id: message.id,
+          });
+          return msg.result;
+        })
+      );
+
+      setEmails(emailDetails);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const getEmailDetails = async (id) => {
-    const response = await gapi.client.gmail.users.messages
-      .get({
-        userId: "me",
-        id: id,
-      })
-      .catch((e) => console.error(e));
-    return response.result;
-  };
   const getHeader = (headers, name) => {
     const header = headers.find((header) => header.name === name);
     return header ? header.value : "";
