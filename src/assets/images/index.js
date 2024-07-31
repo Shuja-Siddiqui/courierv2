@@ -15,11 +15,15 @@ import spreedsheet from "./spreedsheet.webp"
 import files from "./files.png"
 import mongodb from "./mongodb.png"
 import sql from "./sql1.webp"
-import taitms from "./taitms.png"
 import tai from "./tai.png"
+import magaya from "./magaya.png"
+import sap from "./sap.png"
+import netsuite from "./netsuite.png"
 
+export { netsuite };
+export { sap };
+export { magaya };
 export { tai };
-export { taitms };
 export { sql };
 export { mongodb };
 export { files };

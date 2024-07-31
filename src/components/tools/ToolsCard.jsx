@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { files, mongodb, spreedsheet, sql, tai, taitms } from "../../assets/images";
+import { files, magaya, mongodb, netsuite, sap, spreedsheet, sql, tai, taitms } from "../../assets/images";
 
 const cardData = [
   {
@@ -8,19 +8,21 @@ const cardData = [
     bgColor: 'bg-orange-500',
   },
   {
-    title: 'Files',
-    image: files,
-    bgColor: 'bg-yellow-500',
+    title: 'Magaya Supply Chain',
+    image: magaya,
+    bgColor: 'bg-gray-500',
   },
   {
-    title: 'MongoDb',
-    image: mongodb,
-    bgColor: 'bg-stone-500',
+    title: 'SAP S/4 HANA',
+    image: sap,
+    bgColor: 'bg-blue-500',
+    mt: 'mt-4',
   },
   {
-    title: 'Sql',
-    image: sql,
+    title: 'Net Suite',
+    image: netsuite,
     bgColor: 'bg-sky-500',
+    pd: 'p-3',
   },
 ];
 
@@ -43,9 +45,9 @@ const ToolsCard = () => {
       {cardData.map((card, index) => (
         <div key={index} className="p-4 bg-cardbackground bg-opacity-50 rounded-2xl w-[25%]">
           <div className="text-xl font-bold text-white">{card.title}</div>
-          <div className={`text-md flex justify-center items-center mx-auto font-semibold text-gray-500 mt-2 ${card.bgColor} bg-opacity-10 w-36 h-36 rounded-full`}>
+          <div className={`text-md flex justify-center items-center mx-auto font-semibold text-gray-500 mt-2 ${card.bgColor}  bg-opacity-10 w-36 h-36 rounded-full`}>
             <div className="w-28 h-28">
-              <img src={card.image} alt={card.title} className="hover:scale-125" />
+              <img src={card.image} alt={card.title} className={`hover:scale-125 ${card.mt} ${card.pd}`} />
             </div>
           </div>
           <div className="flex justify-center mt-4">
