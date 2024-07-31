@@ -1,4 +1,5 @@
 import React from "react";
+import { GoPaperclip } from "react-icons/go";
 
 const TicketAttachments = () => {
   const attachments = [
@@ -9,29 +10,18 @@ const TicketAttachments = () => {
   ];
 
   return (
-    <div>
+    <div className="border border-gray-500 p-8">
       <h3 className="text-xl font-bold mb-2">Attachments</h3>
       <ul className="text-sm text-gray-400">
-        <li>
-          <a href="#" className="text-blue-400 underline">
-            AccountStatement.pdf (700 KB)
-          </a>
-        </li>
-        <li>
-          <a href="#" className="text-blue-400 underline">
-            NIC Zafar.jpg (600 KB)
-          </a>
-        </li>
-        <li>
-          <a href="#" className="text-blue-400 underline">
-            issue.PNG (400 KB)
-          </a>
-        </li>
-        <li>
-          <a href="#" className="text-blue-400 underline">
-            issuemobile.jpg (70 KB)
-          </a>
-        </li>
+        {attachments?.map((item) => {
+          return (
+            <li className="list-none mb-2">
+              <a href="#" className="flex items-center gap-2 text-green-400">
+                <GoPaperclip /> {item?.name} {`(${item?.size})`}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
