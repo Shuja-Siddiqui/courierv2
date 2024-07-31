@@ -95,7 +95,7 @@ export default function ManageAgent({ onDataChange }) {
       </div>
         <button
           onClick={openModal}
-          className="flex items-center gap-2  rounded-xl px-5 py-4 shadow-2xl  font-manrope bg-white text-black font-medium hover:bg-gray-300 hover:scale-105"
+          className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
         >
           <RiRobot3Line /> Add
         </button>

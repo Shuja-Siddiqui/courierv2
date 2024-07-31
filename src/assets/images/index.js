@@ -10,8 +10,20 @@ import pod7 from "./pod7.jpg";
 import pod8 from "./pod8.webp";
 import pod9 from "./pod9.jpeg";
 import pod10 from "./pod10.jpeg";
-import logoNormal from "./logoNormal.svg"
+import logoNormal from "./logoNormal.svg";
+import spreedsheet from "./spreedsheet.webp"
+import files from "./files.png"
+import mongodb from "./mongodb.png"
+import sql from "./sql1.webp"
+import taitms from "./taitms.png"
+import tai from "./tai.png"
 
+export { tai };
+export { taitms };
+export { sql };
+export { mongodb };
+export { files };
+export { spreedsheet };
 export { logo };
 export {logoNormal}
 export { normallogo };

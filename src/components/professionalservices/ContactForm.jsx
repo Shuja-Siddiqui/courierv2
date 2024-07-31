@@ -23,7 +23,7 @@ export default function ContactForm() {
       };
     
   return (
-    <form onSubmit={handleSubmit} className="max-w-md  right-0 mx-auto p-6 bg-gray-900 rounded-lg shadow-md space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-md  right-0 mx-auto p-6 bg-cardbackground rounded-lg shadow-md space-y-4">
     <div>
       <label htmlFor="businessEmail" className="block text-sm font-medium text-white">
         Business Email *
@@ -33,8 +33,9 @@ export default function ContactForm() {
         name="businessEmail"
         value={formData.businessEmail}
         onChange={handleChange}
+        placeholder='Enter your email'
         required
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
       />
     </div>
 
@@ -49,7 +50,7 @@ export default function ContactForm() {
           value={formData.firstName}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
         />
       </div>
       <div className="w-1/2">
@@ -62,7 +63,7 @@ export default function ContactForm() {
           value={formData.lastName}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
         />
       </div>
     </div>
@@ -77,7 +78,7 @@ export default function ContactForm() {
         value={formData.companyName}
         onChange={handleChange}
         required
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
       />
     </div>
 
@@ -138,7 +139,7 @@ export default function ContactForm() {
           value={formData.phoneNumber}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
         />
       </div>
     </div>
@@ -146,7 +147,7 @@ export default function ContactForm() {
     <div>
       <button
         type="submit"
-        className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+        className="w-full bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md"
       >
         Submit
       </button>
