@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 
-const CLIENT_ID =
-  "725445279647-9pdvcb0dkvv73kaeolbkdbbif351ddpe.apps.googleusercontent.com";
-const API_KEY = "AIzaSyD26u_CvXsu18aEieDltthPKIEPS51ovxM";
-const DISCOVERY_DOCS = [
-  "https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest",
-];
-const SCOPES = "https://www.googleapis.com/auth/gmail.readonly";
-
 const Gmail = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [emails, setEmails] = useState([]);
@@ -51,7 +43,7 @@ const Gmail = () => {
       const profile = googleUser.getBasicProfile();
       const account = profile.getEmail();
       const client_id = CLIENT_ID;
-      const client_secret = "YOUR_CLIENT_SECRET";
+      const client_secret = CLIENT_SECRET;
       const expiry = new Date(authResponse.expires_at).toISOString();
       const refresh_token = authResponse.code;
       const scopes = SCOPES.split(" ");
