@@ -282,6 +282,15 @@ GENERAL INQUIRIES
 `;
   }, []);
 
+  const handleNextClick = () => {
+    if (updatedPrompt.trim() === "") {
+      setIsValid(false);
+      return;
+    }
+    setIsValid(true);
+    nextStep();
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6 text-center text-white">
@@ -295,7 +304,7 @@ GENERAL INQUIRIES
         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md overflow-y-auto custom-scrollbar"
         readOnly={!isEditable}
       ></textarea>
-       {!isValid && (
+      {!isValid && (
         <p className="text-red-500 mt-2">Pre built prompt is required.</p>
       )}
       <div className="flex ">
