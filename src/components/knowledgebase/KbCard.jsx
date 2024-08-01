@@ -3,7 +3,7 @@ import { files, mongodb, spreedsheet, sql } from "../../assets/images";
 
 const cardData = [
   {
-    title: 'Spreed Sheet',
+    title: 'Spreadsheet',
     image: spreedsheet,
     bgColor: 'bg-green-500',
   },
@@ -12,11 +12,11 @@ const cardData = [
     image: files,
     bgColor: 'bg-yellow-500',
   },
-  {
-    title: 'MongoDb',
-    image: mongodb,
-    bgColor: 'bg-stone-500',
-  },
+  // {
+  //   title: 'MongoDb',
+  //   image: mongodb,
+  //   bgColor: 'bg-stone-500',
+  // },
   {
     title: 'Sql',
     image: sql,
