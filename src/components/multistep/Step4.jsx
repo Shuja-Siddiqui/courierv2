@@ -89,8 +89,8 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
             <input
               type="text"
               placeholder="Enter Database Connection"
-              value={values.chatbotName}
-              onChange={handleChange("chatbotName")}
+              value={values.dbConnection}
+              onChange={handleChange("dbConnection")}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>

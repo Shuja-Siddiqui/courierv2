@@ -53,11 +53,11 @@ const AgentTable = ({ topHeading, data }) => {
                     {item?.deployType.Website && "Website"}
                     {item?.deployType.Email && " | " + "Email"}
                     {!item?.deployType.Website && !item?.deployType.Email
-                      ? "-"
+                      ? "Dashboard"
                       : ""}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
-                    {item?.externalModel !== "" ? item?.externalModel : "-"}
+                    {item?.externalModel !== "" ? item?.externalModel : ""}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
                     {item?.status}

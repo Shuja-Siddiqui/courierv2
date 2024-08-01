@@ -18,7 +18,7 @@ export default function ManageAgent({ onDataChange }) {
     agentType: "",
     workFlow: "",
     prompt: "",
-    kbType: "",
+    kbType: "Database",
     deployType: "",
     status: "",
     externalModel: "",
@@ -45,7 +45,7 @@ export default function ManageAgent({ onDataChange }) {
         agentType: "",
         workFlow: "",
         prompt: "",
-        kbType: "",
+        kbType: "Database",
         deployType: "",
         status: "",
       });
