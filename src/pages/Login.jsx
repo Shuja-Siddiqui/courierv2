@@ -11,13 +11,14 @@ const CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID"; // Replace with your Google Client ID
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [inviteCode, setInviteCode] = useState("");
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   // Dummy credentials
   const dummyEmail = "test@example.com";
   const dummyPassword = "password@#$123";
-
+  const dummyInviteCode = "INVITE123";
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -86,6 +87,14 @@ export default function Login() {
         console.error("Error signing in with Google", error);
       });
   };
+  const handleInviteSubmit = () => {
+    if (inviteCode === dummyInviteCode) {
+      localStorage.setItem("isAuthenticated", "true");
+      navigate("/");
+    } else {
+      alert("Invalid invite code. Please try again.");
+    }
+  };
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-background bg-cover bg-no-repeat">
@@ -153,7 +162,7 @@ export default function Login() {
               </h2>
               <p className="mb-4">
                 Enter your invite code below otherwise book a meeting{" "}
-                <a href="#" className="text-teal-500">
+                <a href="https://cal.com/aahdil/normal-bots-demo" className="text-teal-500 " target="_blank">
                   here
                 </a>
                 .
@@ -162,6 +171,7 @@ export default function Login() {
                 className="w-full mb-4 rounded-3xl border-none bg-gray-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                 type="text"
                 placeholder="Enter Invite Code"
+                onChange={(e) => setInviteCode(e.target.value)}
               />
               <div className="flex justify-end gap-2">
                 <button
@@ -172,7 +182,7 @@ export default function Login() {
                 </button>
                 <button
                   className="rounded-3xl  bg-opacity-50 py-2 px-4 text-white shadow-xl backdrop-blur-md transition-colors duration-300  bg-green-400  hover:bg-green-700"
-                  onClick={() => setShowModal(false)}
+                  onClick={handleInviteSubmit}
                 >
                   Submit
                 </button>
