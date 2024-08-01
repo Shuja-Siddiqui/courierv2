@@ -10,13 +10,13 @@ import { calculateChatCost } from "../utils";
 const fetchChatHistory = async () => {
   // Replace with actual API call
   return [
-    { date: "24 July", count: 0 },
-    { date: "25 July", count: 0 },
-    { date: "26 July", count: 5 },
+    { date: "26 July", count: 0 },
     { date: "27 July", count: 0 },
-    { date: "28 July", count: 0 },
+    { date: "28 July", count: 5 },
     { date: "29 July", count: 0 },
     { date: "30 July", count: 0 },
+    { date: "31 July", count: 0 },
+    { date: "01 August", count: 0 },
   ];
 };
 
