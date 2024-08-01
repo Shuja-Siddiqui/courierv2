@@ -15,7 +15,7 @@ export default function Login() {
 
   // Dummy credentials
   const dummyEmail = "test@example.com";
-  const dummyPassword = "password123";
+  const dummyPassword = "password@#$123";
 
   const handleLogin = (e) => {
     e.preventDefault();
