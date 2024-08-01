@@ -21,7 +21,7 @@ export default function Login() {
     e.preventDefault();
 
     // Check if entered credentials match dummy credentials
-    if (email !== dummyEmail && password !== dummyPassword) {
+    if (email === dummyEmail && password === dummyPassword) {
       // Set authenticated status in localStorage
       localStorage.setItem("isAuthenticated", "true");
       // Redirect to home page
