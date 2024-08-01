@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const Step3 = ({ prevStep, nextStep, handleChange, values }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [updatedPrompt, setUpdatedPrompt] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
     switch (values.agentType) {
@@ -185,10 +186,14 @@ Analysis schema:
     }
     setIsEditable(!isEditable);
   };
-// Update at start
-  useEffect(() => {
-    handleChange("prompt", updatedPrompt);
-  }, []);
+  const handleNextClick = () => {
+    if (updatedPrompt.trim() === "") {
+      setIsValid(false);
+      return;
+    }
+    setIsValid(true);
+    nextStep();
+  };
 
   return (
     <div>
@@ -196,12 +201,16 @@ Analysis schema:
         Edit Pre-built Prompt
       </h2>
       <textarea
+        id="prompt"
         value={updatedPrompt}
         onChange={(e) => setUpdatedPrompt(e.target.value)}
         rows={8}
         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md overflow-y-auto custom-scrollbar"
         readOnly={!isEditable}
       ></textarea>
+       {!isValid && (
+        <p className="text-red-500 mt-2">Pre built prompt is required.</p>
+      )}
       <div className="flex ">
         <button
           onClick={handleEditClick}
@@ -217,7 +226,7 @@ Analysis schema:
           Prev
         </button>
         <button
-          onClick={nextStep}
+          onClick={handleNextClick}
           // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
         >
