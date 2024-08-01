@@ -198,30 +198,32 @@ Analysis schema:
       <textarea
         value={updatedPrompt}
         onChange={(e) => setUpdatedPrompt(e.target.value)}
-        rows={5}
-        className="w-full p-2 border rounded text-black"
+        rows={8}
+        className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md overflow-y-auto custom-scrollbar"
         readOnly={!isEditable}
       ></textarea>
+      <div className="flex ">
+        <button
+          onClick={handleEditClick}
+          className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+        >
+          {isEditable ? "Save" : "Edit"}
+        </button>
 
-      <button
-        onClick={handleEditClick}
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-      >
-        {isEditable ? "Save" : "Edit"}
-      </button>
-
-      <button
-        onClick={prevStep}
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-      >
-        Prev
-      </button>
-      <button
-        onClick={nextStep}
-        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Next
-      </button>
+        <button
+          onClick={prevStep}
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+        >
+          Prev
+        </button>
+        <button
+          onClick={nextStep}
+          // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

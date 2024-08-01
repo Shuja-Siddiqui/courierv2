@@ -2,10 +2,11 @@ import React from "react";
 
 export default function SimpleCard({ data, isSelected, onSelect }) {
   return (
-    <div className="bg-gray-900 text-white p-6 rounded-lg shadow-lg max-w-xs">
+    <div className="bg-background text-white p-6 rounded-lg shadow-lg max-w-xs">
       <div className="flex flex-row justify-end">
         <button
-          className={`bg-gray-700 p-2 rounded ${
+        
+          className={`bg-cardbackground px-4 py-1 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg ${
             data.button !== "Select" ? "cursor-not-allowed opacity-50" : ""
           }`}
           onClick={onSelect}

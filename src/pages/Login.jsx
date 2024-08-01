@@ -88,8 +88,8 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat">
-      <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-3 shadow-lg backdrop-blur-md max-sm:px-8">
+    <div className="flex h-screen w-full items-center justify-center bg-background bg-cover bg-no-repeat">
+      <div className="rounded-xl bg-cardbackground  px-16 py-3 shadow-lg backdrop-blur-md max-sm:px-8">
         <div className="text-white">
           <div className="mb-8 flex flex-col items-center mt-8">
             <img src={logoNormal} alt="" className="h-20" />
@@ -145,8 +145,8 @@ export default function Login() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-xl px-8 py-6 shadow-lg backdrop-blur-md">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+          <div className="bg-cardbackground rounded-xl px-8 py-6 shadow-lg backdrop-blur-md">
             <div className="text-white">
               <h2 className="text-2xl mb-4">
                 Have you spoken to Normal Sales?
@@ -161,14 +161,20 @@ export default function Login() {
               <input
                 className="w-full mb-4 rounded-3xl border-none bg-gray-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                 type="text"
-                placeholder="Invite Code"
+                placeholder="Enter Invite Code"
               />
-              <div className="flex justify-end">
+              <div className="flex justify-end gap-2">
                 <button
-                  className="rounded-3xl bg-gray-400 bg-opacity-50 py-2 px-4 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-gray-900"
+                  className="rounded-3xl bg-opacity-50 py-2 px-4 text-white shadow-xl backdrop-blur-md transition-colors duration-300 bg-red-400 hover:bg-red-700"
                   onClick={() => setShowModal(false)}
                 >
                   Close
+                </button>
+                <button
+                  className="rounded-3xl  bg-opacity-50 py-2 px-4 text-white shadow-xl backdrop-blur-md transition-colors duration-300  bg-green-400  hover:bg-green-700"
+                  onClick={() => setShowModal(false)}
+                >
+                  Submit
                 </button>
               </div>
             </div>

@@ -189,18 +189,19 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
           <select
             value={values.agentType}
             onChange={handleChange("agentType")}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
+            // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
+            className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
           >
-            <option value="" disabled>
+            <option value="" disabled className="bg-cardbackground">
               Select an Agent
             </option>
             {agentNames.map((agent, index) => (
-              <option key={index} value={agent}>
+              <option className="bg-cardbackground " key={index} value={agent}>
                 {agent}
               </option>
             ))}
           </select>
-          <div className="absolute top-0 right-0 h-full flex items-center pr-2 pointer-events-none">
+          {/* <div className="absolute top-0 right-0 h-full flex items-center pr-2 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-700"
               fill="none"
@@ -215,7 +216,7 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
                 d="M19 9l-7 7-7-7"
               ></path>
             </svg>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -270,7 +271,7 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
       {(values.agentType === "Audit" ||
         values.agentType === "Support" ||
         values.agentType === "Sales") && (
-        <div>
+        <div className="flex">
           <button
             onClick={prevStep}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
@@ -279,7 +280,8 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
           </button>
           <button
             onClick={nextStep}
-            className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
           >
             Next
           </button>

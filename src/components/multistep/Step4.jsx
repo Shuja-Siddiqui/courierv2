@@ -71,13 +71,14 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
               <select
                 value={values.databaseName}
                 onChange={handleChange("databaseName")}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
               >
-                <option value="" disabled>
+                <option value="" disabled className="bg-cardbackground">
                   Select a Database
                 </option>
                 {databaseOptions.map((db, index) => (
-                  <option key={index} value={db}>
+                  <option className="bg-cardbackground" key={index} value={db}>
                     {db}
                   </option>
                 ))}
@@ -91,7 +92,8 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
               placeholder="Enter Database Connection"
               value={values.dbConnection}
               onChange={handleChange("dbConnection")}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
             />
           </div>
         </>
@@ -99,29 +101,32 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
 
       {connectionType === "File" && (
         <>
-        <h1 className="text-right">Running on alpha version</h1>
+          <h1 className="text-right">Running on alpha version</h1>
           <div className="mb-4 mt-2">
             <input
               type="file"
               onChange={handleChange("file")}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
             />
           </div>
         </>
       )}
-
-      <button
-        onClick={prevStep}
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-      >
-        Prev
-      </button>
-      <button
-        onClick={nextStep}
-        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Next
-      </button>
+      <div className="flex">
+        <button
+          onClick={prevStep}
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+        >
+          Prev
+        </button>
+        <button
+          onClick={nextStep}
+          // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
