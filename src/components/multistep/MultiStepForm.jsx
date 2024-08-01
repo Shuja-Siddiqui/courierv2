@@ -54,7 +54,7 @@ const MultiStepForm = ({
       const newArray = [...data, formData];
       dispatch(setAgentData(newArray));
       // Add Agent
-      console.log("Multi", formData);
+      console.log("Multi", formData, "and", emailData);
       const obj = {
         name: formData?.agentName,
         description: formData?.agentDescription,
@@ -67,12 +67,18 @@ const MultiStepForm = ({
         deploy_type: formData?.deployType,
         external_model: formData?.externalModel,
         status: formData?.status,
+        client_secret: emailData?.clientSecret,
+        refresh_token: emailData?.refreshToken,
       };
-      // addAgent(obj)
-      //   .then((res) => {
-      //     console.log("res", res);
-      //   })
-      //   .catch((err) => console.log(err));
+
+      addAgent(obj)
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => console.log(err));
+
+      localStorage.setItem("agentData", JSON.stringify(newArray));
+
       // reset Form
       setFormData({
         agentName: "",
@@ -80,9 +86,16 @@ const MultiStepForm = ({
         agentType: "",
         workFlow: "",
         prompt: "",
-        kbType: "",
+        kbType: "Database",
         deployType: "",
         status: "",
+        dbType: "",
+        dbConnection: "",
+        externalModel: "",
+      });
+      setEmailData({
+        clientSecret: "",
+        refreshToken: "",
       });
       onClose();
       loader();

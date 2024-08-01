@@ -17,8 +17,8 @@ const Step5 = ({
   });
   const technologies = ["React", "Angular", "Vue", "Svelte", "Ember"];
   const emailTech = ["Google", "Outlook", "Email Server", "Hotmail"];
-  const [emailType, setEmailType] = useState("");
-  const [websiteTechnology, setWebsiteTechnology] = useState("");
+  const [emailType, setEmailType] = useState("Google");
+  const [websiteTechnology, setWebsiteTechnology] = useState("React");
 
   const handleConnectionTypeSelection = (type) => {
     setSelectedConnections((prevSelected) => ({

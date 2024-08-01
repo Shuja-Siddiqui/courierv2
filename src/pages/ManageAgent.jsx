@@ -54,7 +54,8 @@ export default function ManageAgent({ onDataChange }) {
     }
   };
 
-  const data = useSelector(selectAgentDetails);
+  // const data = useSelector(selectAgentDetails);
+  const data = JSON.parse(localStorage.getItem("agentData"));
 
   const openModal = () => {
     setIsModalOpen(true);

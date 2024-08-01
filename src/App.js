@@ -8,7 +8,7 @@ import Support from "./pages/Support";
 import TicketDetail from "./components/table/TicketDetail";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Overview from "./pages/Overview";
 import Monitor from "./pages/Monitor";
 import SupportTicket from "./components/support/SupportTicket";
@@ -16,13 +16,21 @@ import ProfessionalService from "./pages/ProfessionalService";
 import CoomingSoon from "./pages/CoomingSoon";
 import KnowledgeBase from "./pages/KnowledgeBase";
 import Tools from "./pages/Tools";
+import { setAgentData } from "./redux/agentSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
   const [data, setData] = useState("");
+  const dispatch = useDispatch();
 
   const handleDataChange = (newData) => {
     setData(newData);
   };
+
+  useEffect(() => {
+    const agent = JSON.parse(localStorage.getItem("agentData"));
+    dispatch(setAgentData(agent));
+  }, []);
   return (
     <Router>
       <Routes>
