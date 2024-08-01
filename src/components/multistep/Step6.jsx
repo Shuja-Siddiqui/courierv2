@@ -47,7 +47,7 @@ export default function Step6({
   return (
     <>
       <div className="w-full flex justify-between">
-        <div className="w-[48%] chatbot-container flex flex-col h-[60vh] max-h-[600px] bg-gray-900 rounded-2xl shadow-lg border border-light-grey">
+        <div className="w-[48%] chatbot-container flex flex-col h-[60vh] max-h-[600px] bg-background rounded-2xl shadow-lg border border-light-grey">
           <header className="flex items-center px-4 py-3 bg-card rounded-t-2xl">
             <div className="flex items-center gap-2">
               <img
@@ -63,7 +63,7 @@ export default function Step6({
               </span>
             </div>
           </header>
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-manrope">
+          <div className="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-4 font-manrope">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -80,7 +80,8 @@ export default function Step6({
           <footer className="bg-card rounded-b-2xl p-4 flex items-center gap-2">
             <form className="flex-1" onSubmit={sendMessage}>
               <input
-                className="flex h-10 rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full font-manrope text-gray-900"
+                // className="flex h-10 rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full font-manrope text-gray-900"
+                         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                 id="message"
                 placeholder="Type your message..."
                 autoComplete="off"
@@ -128,7 +129,7 @@ export default function Step6({
         </div>
       </div>
 
-      <div className="mt-2">
+      <div className="mt-2 flex">
         <button
           onClick={prevStep}
           className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
@@ -137,7 +138,8 @@ export default function Step6({
         </button>
         <button
           onClick={handleSubmit}
-          className="bg-white text-black font-medium rounded py-2 px-4"
+          // className="bg-white text-black font-medium rounded py-2 px-4"
+         className="bg-fuchsia-800 px-4 py-2 hover:scale-105  border-[0.5px] border-fuchsia-700 rounded-md flex  justify-center items-center gap-2 text-lg"
         >
           Deploy
         </button>
