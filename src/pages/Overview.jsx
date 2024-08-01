@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ApexCharts from "react-apexcharts";
 import AverageCard from "../components/card/AverageCard";
-import ChatHistoryTable from "../components/table/ChatHistoryTable";
-import TaskHistory from "../components/overview/TaskHistory";
-import { FaCalendarAlt, FaDatabase, FaFileAlt } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { PiChartPieSliceFill } from "react-icons/pi";
 
-import { CiHome } from "react-icons/ci";
-import { PiChartPieSliceFill, PiChartPieSliceLight } from "react-icons/pi";
+// Mock API call function (replace this with your actual API call)
+const fetchChatHistory = async () => {
+  // Replace with actual API call
+  return [
+    { date: "24 July", count: 10 },
+    { date: "25 July", count: 20 },
+    { date: "26 July", count: 15 },
+    { date: "27 July", count: 30 },
+    { date: "28 July", count: 25 },
+    { date: "29 July", count: 40 },
+    { date: "30 July", count: 35 },
+  ];
+};
 
 const Overview = () => {
-  const options = {
+  const [options, setOptions] = useState({
     chart: {
       height: "100%",
       maxWidth: "100%",
@@ -52,23 +62,8 @@ const Overview = () => {
         top: 0,
       },
     },
-    series: [
-      {
-        name: "Workflows executed",
-        data: [0, 0, 0, 0, 0, 0, 0],
-        color: "#1A56DB",
-      },
-    ],
     xaxis: {
-      categories: [
-        "24 July",
-        "25 July",
-        "26 July",
-        "27 July",
-        "28 July",
-        "29 July",
-        "30 July",
-      ],
+      categories: [],
       labels: {
         show: true,
         style: {
@@ -84,36 +79,64 @@ const Overview = () => {
     },
     yaxis: {
       show: true,
-      categories: [
-        "24 July",
-        "25 July",
-        "26 July",
-        "27 July",
-        "28 July",
-        "29 July",
-        "30 July",
-      ],
       labels: {
         style: {
           colors: "#fff",
         },
-        
       },
     },
-  };
+  });
+
+  const [series, setSeries] = useState([
+    {
+      name: "Chats",
+      data: [],
+      color: "#1A56DB",
+    },
+  ]);
+
+  const [mean, setMean] = useState(0);
+
+  useEffect(() => {
+    const getChatData = async () => {
+      const chatData = await fetchChatHistory();
+      const categories = chatData.map((item) => item.date);
+      const data = chatData.map((item) => item.count);
+
+      setOptions((prevOptions) => ({
+        ...prevOptions,
+        xaxis: {
+          ...prevOptions.xaxis,
+          categories: categories,
+        },
+      }));
+
+      setSeries([
+        {
+          name: "Chats",
+          data: data,
+          color: "#1A56DB",
+        },
+      ]);
+
+      const total = data.reduce((sum, value) => sum + value, 0);
+      const meanValue = total / data.length;
+      setMean(meanValue);
+    };
+
+    getChatData();
+  }, []);
 
   return (
     <div className="h-auto bg-background p-4 body">
-      {/* Other components */}
       <div className="flex gap-5 w-[100%] ">
-        <div className="flex justify-between w-[70%]  ">
+        <div className="flex justify-between w-[70%]">
           <div className="flex flex-col w-full">
             <div className="flex justify-between items-center mb-5 w-full">
               <div className="flex flex-col">
                 <h2 className="text-3xl mb-4 font-bold flex items-center gap-2">
                   Overview
                 </h2>
-                
               </div>
               <div className="flex h-10 gap-2">
                 <button className="flex items-center gap-2 rounded-md bg-black bg-opacity-50 px-4 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-gray-900">
@@ -121,25 +144,26 @@ const Overview = () => {
                   <span className="whitespace-nowrap">Select Date</span>
                 </button>
                 <button className="flex items-center gap-2 rounded-md bg-black bg-opacity-50 px-4 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-gray-900">
-                  <PiChartPieSliceFill size={20} className="text-sm rotate-90" />
-                  <span className="whitespace-nowrap">
-                    Select Workflow 
-                  </span>
+                  <PiChartPieSliceFill
+                    size={20}
+                    className="text-sm rotate-90"
+                  />
+                  <span className="whitespace-nowrap">Select Workflow</span>
                 </button>
               </div>
             </div>
-            <div className="max-w-4xl w-full bg-cardbackground rounded-lg shadow  p-4 md:p-6">
+            <div className="max-w-4xl w-full bg-cardbackground rounded-lg shadow p-4 md:p-6">
               <div className="flex justify-between">
                 <div>
                   <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">
-                    0
+                    {mean.toFixed(2)}
                   </h5>
                   <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-                    Workflows executed
+                    Average Chats
                   </p>
                 </div>
                 <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                  0%
+                  {series[0].data.reduce((sum, value) => sum + value, 0)}
                   <svg
                     className="w-3 h-3 ms-1"
                     aria-hidden="true"
@@ -160,7 +184,7 @@ const Overview = () => {
               <div style={{ height: "200px", width: "100%" }}>
                 <ApexCharts
                   options={options}
-                  series={options.series}
+                  series={series}
                   type="area"
                   height="100%"
                   width="100%"

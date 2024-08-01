@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function Step6({
   values,
@@ -21,10 +22,17 @@ export default function Step6({
     setMessages([...messages, userMessage]);
 
     try {
-      // const response = await axios.post("/api/chat", { message: input });
-      // const botMessage = { sender: "bot", text: response.data.reply };
+      const response = await axios.post(
+        "https://srv572320.hstgr.cloud:3100/courier-chat-bot",
+        {
+          question: input,
+          session_id: "1212121212",
+          phone_number_verified: false,
+        }
+      );
+      const botMessage = { sender: "bot", text: response?.data?.answer };
 
-      const botMessage = { sender: "bot", text: "its good" };
+      // const botMessage = { sender: "bot", text: "its good" };
       setMessages([...messages, userMessage, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
@@ -36,13 +44,12 @@ export default function Step6({
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       sendMessage(event);
+      setInput("");
     }
   };
 
   const handleConnection = () => {
-    setConnectionStatus(
-      "Successfully connected"
-    );
+    setConnectionStatus("Successfully connected");
   };
   return (
     <>
@@ -59,7 +66,7 @@ export default function Step6({
                 className="rounded-full"
               />
               <span className="text-lg font-semibold text-gray-200 font-manrope">
-                Testing Support
+                {values?.agentName ? values?.agentName : "Support"}
               </span>
             </div>
           </header>
