@@ -210,7 +210,7 @@ const Step5 = ({
 
           <div className="w-full flex justify-center">
             {selectedConnections.Website === true && (
-              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+              <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
                 <h1 className="text-white text-lg font-bold">
                   Website Deployment
                 </h1>
@@ -220,13 +220,16 @@ const Step5 = ({
 
           <div className="w-full flex justify-center">
             {selectedConnections.Website === true && (
-              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+              <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
                 {technologies.map((tech) => (
                   <button
                     key={tech}
                     type="button"
                     onClick={() => setWebsiteTechnology(tech)}
-                    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className={`bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline ${
+                      tech === "React" ? "bg-gray-700" : "bg-gray-500"
+                    }`}
                   >
                     {tech}
                   </button>
@@ -289,7 +292,7 @@ const Step5 = ({
 
           <div className="w-full flex justify-center">
             {selectedConnections.Email === true && (
-              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+              <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
                 <h1 className="text-white text-lg font-bold">
                   Email Deployment
                 </h1>
@@ -299,13 +302,16 @@ const Step5 = ({
 
           <div className="w-full flex justify-center">
             {selectedConnections.Email === true && (
-              <div className="flex space-x-4 p-6 bg-gray-800 rounded-lg">
+              <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
                 {emailTech.map((tech) => (
                   <button
                     key={tech}
                     type="button"
                     onClick={() => setEmailType(tech)}
-                    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className={`bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline ${
+                      tech === "Google" ? "bg-gray-700" : "bg-gray-500"
+                    }`}
                   >
                     {tech}
                   </button>
@@ -326,7 +332,8 @@ const Step5 = ({
                         placeholder="Enter Client Secret"
                         value={emailData.clientSecret}
                         onChange={handleEmail("clientSecret")}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                       />
                     </div>
                     <div className="mb-4">
@@ -335,7 +342,8 @@ const Step5 = ({
                         placeholder="Enter Refresh Token"
                         value={emailData.refreshToken}
                         onChange={handleEmail("refreshToken")}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                       />
                     </div>
                   </div>
@@ -514,9 +522,9 @@ const Step5 = ({
           <WorkFlowSelector setFormData={setFormData} />{" "}
         </div>
       ) : (
-        <div className="w-full flex justify-center items-center h-screen flex-col">
-          <div className="text-red-500 text-xl font-bold">
-            Error: You haven't selected an agent type.
+        <div className="w-full flex justify-center items-center h-screen flex-col overflow-auto custom-scrollbar">
+          <div className="text-white text-4xl font-bold mb-4">
+            Available on Alpha Version
           </div>
           <div>
             <button
@@ -529,27 +537,31 @@ const Step5 = ({
         </div>
       )}
       {/* support End */}
-      <button
+     <div className="flex ">
+       <button
         onClick={prevStep}
         className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-      >
+        >
         Prev
       </button>
       {values?.agentType === "Audit" ? (
         <button
-          onClick={handleSubmit}
-          className="bg-white text-black font-medium rounded py-2 px-4"
+        onClick={handleSubmit}
+        // className="bg-white text-black font-medium rounded py-2 px-4"
+        className="bg-fuchsia-800 px-4 py-2 hover:scale-105  border-[0.5px] border-fuchsia-700 rounded-md flex  justify-center items-center gap-2 text-lg"
         >
           Deploy
         </button>
       ) : (
         <button
-          onClick={nextStep}
-          className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
+        onClick={nextStep}
+        // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+       >
           Next
         </button>
       )}
+      </div>
     </>
   );
 };
