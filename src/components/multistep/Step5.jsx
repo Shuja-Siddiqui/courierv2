@@ -119,7 +119,7 @@ const Step5 = ({
 
     input.value = '';
 
-    const response = await fetch('http://192.168.0.120:3100/courier-chat-bot', {
+    const response = await fetch('https://srv572320.hstgr.cloud:3100/courier-chat-bot', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

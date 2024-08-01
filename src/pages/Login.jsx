@@ -4,6 +4,7 @@ import { SiNormalizedotcss } from "react-icons/si";
 import { logoNormal } from "../assets/images";
 import { FcGoogle } from "react-icons/fc";
 import { gapi } from "gapi-script";
+import { login } from "../api/user";
 
 const CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID"; // Replace with your Google Client ID
 
@@ -20,15 +21,28 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    login({ email: email, password })
+      .then((res) => {
+        console.log("res", res);
+        if (res?.user_email === email) {
+          localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("userDetails", JSON.stringify(res));
+          navigate("/");
+        } else {
+          alert("Invalid email or password. Please try again.");
+        }
+      })
+      .catch((err) => console.log(err));
+
     // Check if entered credentials match dummy credentials
-    if (email === dummyEmail && password === dummyPassword) {
-      // Set authenticated status in localStorage
-      localStorage.setItem("isAuthenticated", "true");
-      // Redirect to home page
-      navigate("/");
-    } else {
-      alert("Invalid email or password. Please try again.");
-    }
+    // if (email === dummyEmail && password === dummyPassword) {
+    //   // Set authenticated status in localStorage
+    //   localStorage.setItem("isAuthenticated", "true");
+    //   // Redirect to home page
+    //   navigate("/");
+    // } else {
+    //   alert("Invalid email or password. Please try again.");
+    // }
   };
 
   useEffect(() => {

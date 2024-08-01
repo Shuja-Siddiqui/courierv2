@@ -8,6 +8,7 @@ import Step6 from "./Step6";
 import { selectAgentDetails, setAgentData } from "../../redux/agentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectConfirm, setFalse } from "../../redux";
+import { addAgent } from "../../api/agent";
 
 const MultiStepForm = ({
   formData,
@@ -52,6 +53,27 @@ const MultiStepForm = ({
       const data = agents === null ? [] : agents;
       const newArray = [...data, formData];
       dispatch(setAgentData(newArray));
+      // Add Agent
+      console.log("Multi", formData);
+      const obj = {
+        name: formData?.agentName,
+        description: formData?.agentDescription,
+        agent_type: formData?.agentType,
+        workflow: formData?.workFlow,
+        prompt: formData?.prompt,
+        kb_type: formData?.kbType,
+        db_type: formData?.dbType,
+        db_connection: formData?.dbConnection,
+        deploy_type: formData?.deployType,
+        external_model: formData?.externalModel,
+        status: formData?.status,
+      };
+      // addAgent(obj)
+      //   .then((res) => {
+      //     console.log("res", res);
+      //   })
+      //   .catch((err) => console.log(err));
+      // reset Form
       setFormData({
         agentName: "",
         agentDescription: "",
