@@ -15,13 +15,13 @@ export default function Login() {
 
   // Dummy credentials
   const dummyEmail = "test@example.com";
-  const dummyPassword = "password123";
+  const dummyPassword = "password@#$123";
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     // Check if entered credentials match dummy credentials
-    if (email !== dummyEmail && password !== dummyPassword) {
+    if (email === dummyEmail && password === dummyPassword) {
       // Set authenticated status in localStorage
       localStorage.setItem("isAuthenticated", "true");
       // Redirect to home page
