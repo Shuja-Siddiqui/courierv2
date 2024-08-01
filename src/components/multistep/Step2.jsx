@@ -240,7 +240,7 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
               key={index}
               data={data}
               isSelected={selectedCardId === index}
-              onSelect={() => handleSelect(index)}
+              onSelect={() => handleSelect(index, data?.title)}
             />
           ))}
         </div>

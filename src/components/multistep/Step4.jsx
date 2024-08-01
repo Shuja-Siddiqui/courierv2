@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
   const [dbType, setDbType] = useState("");
@@ -18,6 +18,11 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
   const noSqlDatabases = ["MongoDB", "Cassandra", "CouchDB", "Firebase"];
 
   const databaseOptions = dbType === "SQL" ? sqlDatabases : noSqlDatabases;
+
+  useEffect(() => {
+    values.kbType = "Database";
+  }, []);
+  
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6 text-center text-white">

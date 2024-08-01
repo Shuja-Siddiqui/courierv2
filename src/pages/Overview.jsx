@@ -3,22 +3,25 @@ import ApexCharts from "react-apexcharts";
 import AverageCard from "../components/card/AverageCard";
 import { FaCalendarAlt } from "react-icons/fa";
 import { PiChartPieSliceFill } from "react-icons/pi";
+import { GoQuestion } from "react-icons/go";
+import { calculateChatCost } from "../utils";
 
 // Mock API call function (replace this with your actual API call)
 const fetchChatHistory = async () => {
   // Replace with actual API call
   return [
-    { date: "24 July", count: 10 },
-    { date: "25 July", count: 20 },
-    { date: "26 July", count: 15 },
-    { date: "27 July", count: 30 },
-    { date: "28 July", count: 25 },
-    { date: "29 July", count: 40 },
-    { date: "30 July", count: 35 },
+    { date: "24 July", count: 0 },
+    { date: "25 July", count: 0 },
+    { date: "26 July", count: 5 },
+    { date: "27 July", count: 0 },
+    { date: "28 July", count: 0 },
+    { date: "29 July", count: 0 },
+    { date: "30 July", count: 0 },
   ];
 };
 
 const Overview = () => {
+  const [cost, setCost] = useState(0);
   const [options, setOptions] = useState({
     chart: {
       height: "100%",
@@ -97,9 +100,16 @@ const Overview = () => {
 
   const [mean, setMean] = useState(0);
 
+  const [isBoxVisible, setIsBoxVisible] = useState(false);
+
+  const toggleBoxVisibility = () => {
+    setIsBoxVisible(!isBoxVisible);
+  };
+
   useEffect(() => {
     const getChatData = async () => {
       const chatData = await fetchChatHistory();
+      setCost(calculateChatCost(chatData));
       const categories = chatData.map((item) => item.date);
       const data = chatData.map((item) => item.count);
 
@@ -153,6 +163,24 @@ const Overview = () => {
               </div>
             </div>
             <div className="max-w-4xl w-full bg-cardbackground rounded-lg shadow p-4 md:p-6">
+              <div
+                className="w-full flex justify-end items-center gap-2 relative"
+                style={{ top: "-6%" }}
+              >
+                {isBoxVisible && (
+                  <div className="absolute bg-white text-black p-2 rounded shadow-md">
+                    Running Beta Version (Dummy Cost)
+                  </div>
+                )}
+              </div>
+              <div className="w-full flex justify-end items-center gap-2">
+                <h3 className=" text-white">Workflow Cost</h3>
+                <h3 className="text-green-400">0.000000{cost}</h3>
+                <GoQuestion
+                  onClick={toggleBoxVisibility}
+                  className="cursor-pointer"
+                />
+              </div>
               <div className="flex justify-between">
                 <div>
                   <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">

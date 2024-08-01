@@ -57,7 +57,7 @@ const AgentTable = ({ topHeading, data }) => {
                       : ""}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
-                    {item?.externalModel !== "" ? item?.externalModel : ""}
+                    {item?.externalModel !== "" ? item?.externalModel : "-"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
                     {item?.status}
