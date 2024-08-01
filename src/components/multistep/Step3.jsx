@@ -185,6 +185,10 @@ Analysis schema:
     }
     setIsEditable(!isEditable);
   };
+// Update at start
+  useEffect(() => {
+    handleChange("prompt", updatedPrompt);
+  }, []);
 
   return (
     <div>

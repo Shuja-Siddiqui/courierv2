@@ -36,6 +36,7 @@ export default function ManageAgent({ onDataChange }) {
     setConfirmModalOpen(false);
     console.log("emailData", emailData);
     // console.log("response", response);
+
     if (response === "yes") {
       dispatch(setTrue());
     } else if (response === "no") {
@@ -87,12 +88,12 @@ export default function ManageAgent({ onDataChange }) {
   return (
     <div className="h-[100vh] bg-background p-4">
       <div className="w-full flex justify-between ">
-      <div className="flex justify-center items-center text-white text-5xl gap-2">
-        <span>
-          <BiDiamond className="mt-2" />
-        </span>
-        <span>Agents</span>
-      </div>
+        <div className="flex justify-center items-center text-white text-5xl gap-2">
+          <span>
+            <BiDiamond className="mt-2" />
+          </span>
+          <span>Agents</span>
+        </div>
         <button
           onClick={openModal}
           className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
