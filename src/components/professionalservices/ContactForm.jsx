@@ -35,7 +35,8 @@ export default function ContactForm() {
         onChange={handleChange}
         placeholder='Enter your email'
         required
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+        // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
       />
     </div>
 
@@ -47,10 +48,12 @@ export default function ContactForm() {
         <input
           type="text"
           name="firstName"
+          placeholder='First Name'
           value={formData.firstName}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+          // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+          className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
         />
       </div>
       <div className="w-1/2">
@@ -60,10 +63,12 @@ export default function ContactForm() {
         <input
           type="text"
           name="lastName"
+          placeholder="Last Name"
           value={formData.lastName}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+          // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+            className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
         />
       </div>
     </div>
@@ -75,10 +80,12 @@ export default function ContactForm() {
       <input
         type="text"
         name="companyName"
+        placeholder="Enter you company name"
         value={formData.companyName}
         onChange={handleChange}
         required
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+        // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+          className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
       />
     </div>
 
@@ -89,10 +96,12 @@ export default function ContactForm() {
       <input
         type="text"
         name="jobTitle"
+        placeholder="Enter your job title"
         value={formData.jobTitle}
         onChange={handleChange}
         required
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+        // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+          className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
       />
     </div>
 
@@ -105,17 +114,18 @@ export default function ContactForm() {
         value={formData.businessType}
         onChange={handleChange}
         required
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+        // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+          className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
       >
         <option value="" disabled>
           Which of these best describes your business?
         </option>
-        <option value="3PL">Third-Party Logistics (3PL)</option>
-        <option value="4PL">Fourth-Party Logistics (4PL)</option>
-        <option value="Brand/Merchant">Brand/Merchant</option>
-        <option value="Retailer">Retailer</option>
-        <option value="Marketplace Seller">Marketplace Seller</option>
-        <option value="Other">Other</option>
+        <option className='bg-background' value="3PL">Third-Party Logistics (3PL)</option>
+        <option className='bg-background' value="4PL">Fourth-Party Logistics (4PL)</option>
+        <option className='bg-background' value="Brand/Merchant">Brand/Merchant</option>
+        <option className='bg-background' value="Retailer">Retailer</option>
+        <option className='bg-background' value="Marketplace Seller">Marketplace Seller</option>
+        <option className='bg-background' value="Other">Other</option>
       </select>
     </div>
 
@@ -128,7 +138,8 @@ export default function ContactForm() {
           name="countryCode"
           value={formData.countryCode}
           onChange={handleChange}
-          className="mt-1 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+          // className="mt-1 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+            className="rounded-md w-20 border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
         >
           <option value="+92">Pakistan (+92)</option>
           {/* Add other country codes as needed */}
@@ -136,10 +147,12 @@ export default function ContactForm() {
         <input
           type="text"
           name="phoneNumber"
+          placeholder="3xx-xxxxxxx"
           value={formData.phoneNumber}
           onChange={handleChange}
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+          // className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-gray-900 sm:text-sm"
+            className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-2 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
         />
       </div>
     </div>

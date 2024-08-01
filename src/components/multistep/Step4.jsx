@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
   const [dbType, setDbType] = useState("");
   const [connectionType, setConnectionType] = useState("Database");
+  const [isValid, setIsValid] = useState(true); // Validation state
+  const [errors, setErrors] = useState({
+    databaseName: "",
+    dbConnection: "",
+    file: ""
+  });
 
   const handleDbTypeSelection = (type) => {
     setDbType(type);
@@ -18,6 +24,42 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
   const noSqlDatabases = ["MongoDB", "Cassandra", "CouchDB", "Firebase"];
 
   const databaseOptions = dbType === "SQL" ? sqlDatabases : noSqlDatabases;
+
+  const validateForm = () => {
+    let isValid = true;
+    let errors = {
+      databaseName: "",
+      dbConnection: "",
+      file: ""
+    };
+
+    if (connectionType === "Database") {
+      if (!values.databaseName) {
+        errors.databaseName = "Database selection is required.";
+        isValid = false;
+      }
+      if (!values.dbConnection) {
+        errors.dbConnection = "Database connection string is required.";
+        isValid = false;
+      }
+    } else if (connectionType === "File") {
+      if (!values.file) {
+        errors.file = "File upload is required.";
+        isValid = false;
+      }
+    }
+
+    setErrors(errors);
+    return isValid;
+  };
+
+  const handleNextClick = () => {
+    if (validateForm()) {
+      nextStep();
+    } else {
+      setIsValid(false);
+    }
+  };
 
   useEffect(() => {
     values.kbType = "Database";
@@ -88,6 +130,9 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
                   </option>
                 ))}
               </select>
+              {errors.databaseName && (
+                <p className="text-red-500 mt-2">{errors.databaseName}</p>
+              )}
             </div>
           )}
 
@@ -100,6 +145,10 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
               // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
             />
+            {errors.dbConnection && (
+              <p className="text-red-500 mt-2">{errors.dbConnection}</p>
+            )}
+            
           </div>
         </>
       )}
@@ -114,6 +163,9 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
               // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
             />
+            {errors.file && (
+              <p className="text-red-500 mt-2">{errors.file}</p>
+            )}
           </div>
         </>
       )}
@@ -125,7 +177,7 @@ const Step4 = ({ prevStep, nextStep, handleChange, values }) => {
           Prev
         </button>
         <button
-          onClick={nextStep}
+          onClick={handleNextClick}
           // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
         >

@@ -5,10 +5,31 @@ import { useNavigate } from "react-router-dom";
 
 const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
   const [selectedCardId, setSelectedCardId] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const handleSelect = (id, name) => {
     setSelectedCardId(id);
     values.workFlow = name;
+  };
+
+  const validate = () => {
+    let tempErrors = {};
+    let isValid = true;
+
+    // Validate Agent Type
+    if (!values.agentType) {
+      tempErrors.agentType = "Please select an agent type";
+      isValid = false;
+    }
+
+    setErrors(tempErrors);
+    return isValid;
+  };
+
+  const handleNextStep = () => {
+    if (validate()) {
+      nextStep();
+    }
   };
 
   const card = [
@@ -201,6 +222,9 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
               </option>
             ))}
           </select>
+          {errors.agentType && (
+            <p className="text-red-500 text-sm mt-1">{errors.agentType}</p>
+          )}
           {/* <div className="absolute top-0 right-0 h-full flex items-center pr-2 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-700"
@@ -279,7 +303,7 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
             Prev
           </button>
           <button
-            onClick={nextStep}
+            onClick={handleNextStep}
             // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
           >
