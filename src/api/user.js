@@ -5,7 +5,7 @@ const BASE_URL = config.BASE_URL;
 
 export const login = (values) => {
   return axios
-    .post(`${BASE_URL}/login`, values, {
+    .post(`${BASE_URL}/users/signin`, values, {
       headers: {
         "Content-Type": "application/json",
       },
