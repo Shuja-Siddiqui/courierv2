@@ -18,6 +18,7 @@ import KnowledgeBase from "./pages/KnowledgeBase";
 import Tools from "./pages/Tools";
 import { setAgentData } from "./redux/agentSlice";
 import { useDispatch } from "react-redux";
+import InboundCalls from "./pages/InboundCalls";
 
 function App() {
   const [data, setData] = useState("");
@@ -60,6 +61,7 @@ function App() {
                         }
                       />
                       <Route path="/chat-history" element={<ChatHistory />} />
+                      <Route path="/inbound-calls" element={<InboundCalls />} />
                       <Route path="/support" element={<Support />} />
                       <Route path="/monitor" element={<Monitor />} />
                       <Route

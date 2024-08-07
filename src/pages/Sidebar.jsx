@@ -9,11 +9,11 @@ import {
 } from "react-icons/fa";
 import { normallogo } from "../assets/images";
 import { CiHome } from "react-icons/ci";
-import { BiDiamond } from "react-icons/bi";
+import { BiDiamond, BiSolidPhoneIncoming } from "react-icons/bi";
 import { PiChartPieSliceLight, PiFileDashedFill } from "react-icons/pi";
 import { AiFillTool } from "react-icons/ai";
 import { RiCustomerService2Fill, RiSettings5Fill } from "react-icons/ri";
-import { FaBots } from "react-icons/fa6";
+import { FaBots, FaPhone } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { selectAgentDetails } from "../redux/agentSlice";
 
@@ -21,6 +21,7 @@ const Sidebar = ({ data }) => {
   const [isWorkflowOpen, setIsWorkflowOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const agents = useSelector(selectAgentDetails);
+  
 
   const toggleWorkflow = () => {
     setIsWorkflowOpen(!isWorkflowOpen);
@@ -30,6 +31,11 @@ const Sidebar = ({ data }) => {
   };
 
   const auditAgents = agents?.filter((agent) => agent.agentType === "Audit");
+  const emailType = agents?.filter((agent) => agent.deployType?.Email === true);
+  const phoneType = agents?.filter((agent) => agent.deployType?.Phone === true);
+  const websiteType = agents?.filter(
+    (agent) => agent.deployType?.Website === true
+  );
 
   return (
     <div className="min-h-[100vh] h-[100%] w-[15%] bg-black text-white flex flex-col overflow-y-auto custom-scrollbar fixed">
@@ -87,18 +93,34 @@ const Sidebar = ({ data }) => {
                 <div className="relative">
                   <div className="absolute left-2 h-full border-l-2 border-gray-700"></div>
                   <div className="">
-                    <NavLink
-                      to="/chat-history"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
-                          : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-                      }
-                    >
-                      <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
-                      <FaHistory />
-                      <span>Chat History</span>
-                    </NavLink>
+                    {emailType.length > 0 || websiteType.length > 0 ? (
+                      <NavLink
+                        to="/chat-history"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                            : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                        }
+                      >
+                        <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                        <FaHistory />
+                        <span>Chat History</span>
+                      </NavLink>
+                    ) : null}
+                    {phoneType.length > 0 && (
+                      <NavLink
+                        to="/inbound-calls"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "flex items-center space-x-2 p-2 bg-gray-700 rounded"
+                            : "flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
+                        }
+                      >
+                        <div className="border-b-2 border-l-2 w-3 rounded-xl border-gray-700"></div>
+                        <BiSolidPhoneIncoming />
+                        <span>Inbound Calls</span>
+                      </NavLink>
+                    )}
                     {/* <NavLink
                       to="/support"
                       className={({ isActive }) =>

@@ -14,11 +14,18 @@ const Step5 = ({
   const [selectedConnections, setSelectedConnections] = useState({
     Website: false,
     Email: false,
+    Phone: false,
   });
   const technologies = ["React", "Angular", "Vue", "Svelte", "Ember"];
   const emailTech = ["Google", "Outlook", "Email Server", "Hotmail"];
   const [emailType, setEmailType] = useState("Google");
   const [websiteTechnology, setWebsiteTechnology] = useState("React");
+
+  const [phoneNumbers, setPhoneNumbers] = useState([
+    "14159939685",
+    
+  ]);
+  const [selectedPhoneNumber, setSelectedPhoneNumber] = useState("");
 
   const handleConnectionTypeSelection = (type) => {
     setSelectedConnections((prevSelected) => ({
@@ -31,13 +38,13 @@ const Step5 = ({
     setFormData((prevValues) => ({
       ...prevValues,
       deployType: selectedConnections,
+      selectedPhoneNumber: selectedPhoneNumber,
     }));
   };
 
   useEffect(() => {
-    // values.deployType = selectedConnections;
     updateDeployType();
-  }, [selectedConnections]);
+  }, [selectedConnections, selectedPhoneNumber]);
 
   const codeSnippet = `
     <!-- Chatbot Button -->
@@ -175,12 +182,12 @@ const Step5 = ({
     }
   });
 </script>`;
-  // workFLow
+
   const WorkFlow = ["POD Audit 3.1", "POD Audit BETA"];
 
   return (
     <>
-      {/* suuport start */}
+      {/* support start */}
       {values?.agentType === "Support" ? (
         <div>
           <h2 className="text-white text-2xl font-bold mb-6 text-center ">
@@ -206,8 +213,18 @@ const Step5 = ({
               />
               Email
             </label>
+            <label className="text-white ">
+              <input
+                type="checkbox"
+                checked={selectedConnections.Phone}
+                onChange={() => handleConnectionTypeSelection("Phone")}
+                className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-600  focus:ring-2 mr-2"
+              />
+              Phone
+            </label>
           </div>
 
+          {/* Website Selected */}
           <div className="w-full flex justify-center">
             {selectedConnections.Website === true && (
               <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
@@ -226,9 +243,8 @@ const Step5 = ({
                     key={tech}
                     type="button"
                     onClick={() => setWebsiteTechnology(tech)}
-                    // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     className={`bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline ${
-                      tech === "React" ? "bg-gray-700" : "bg-gray-500"
+                      tech === websiteTechnology ? "bg-gray-700" : "bg-gray-500"
                     }`}
                   >
                     {tech}
@@ -290,6 +306,7 @@ const Step5 = ({
               ))}
           </div>
 
+          {/* Email Selected */}
           <div className="w-full flex justify-center">
             {selectedConnections.Email === true && (
               <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
@@ -308,9 +325,8 @@ const Step5 = ({
                     key={tech}
                     type="button"
                     onClick={() => setEmailType(tech)}
-                    // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     className={`bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline ${
-                      tech === "Google" ? "bg-gray-700" : "bg-gray-500"
+                      tech === emailType ? "bg-gray-700" : "bg-gray-500"
                     }`}
                   >
                     {tech}
@@ -324,7 +340,6 @@ const Step5 = ({
             {selectedConnections.Email === true &&
               (emailType === "Google" ? (
                 <div className="flex flex-col">
-                  {/* 1 */}
                   <div className="text-white flex flex-col p-6 bg-gray-800 rounded-lg">
                     <div className="mb-4">
                       <input
@@ -332,7 +347,6 @@ const Step5 = ({
                         placeholder="Enter Client Secret"
                         value={emailData.clientSecret}
                         onChange={handleEmail("clientSecret")}
-                        // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                       />
                     </div>
@@ -342,13 +356,11 @@ const Step5 = ({
                         placeholder="Enter Refresh Token"
                         value={emailData.refreshToken}
                         onChange={handleEmail("refreshToken")}
-                        // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                       />
                     </div>
                   </div>
 
-                  {/* 2 */}
                   <h3 className="text-white text-lg font-bold mt-4">
                     Instructions to Obtain Google Client ID and Refresh Token
                   </h3>
@@ -368,7 +380,6 @@ const Step5 = ({
                               className="text-blue-400"
                               target="_blank"
                               rel="noopener noreferrer"
-                              // style={{ color: "green" }}
                             >
                               Google Cloud Console
                             </a>
@@ -516,6 +527,39 @@ const Step5 = ({
                 </>
               ))}
           </div>
+
+          {/* Phone Selected */}
+          <div className="w-full flex justify-center">
+            {selectedConnections.Phone === true && (
+              <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
+                <h1 className="text-white text-lg font-bold">
+                  Phone Deployment
+                </h1>
+              </div>
+            )}
+          </div>
+
+          <div className="w-full flex justify-center">
+            {selectedConnections.Phone === true && (
+              <div className="flex space-x-4 p-6 bg-transparent rounded-lg">
+                <select
+                  name="Phonenumber"
+                  value={selectedPhoneNumber}
+                  onChange={(e) => setSelectedPhoneNumber(e.target.value)}
+                  className="bg-gray-700 text-white p-2 rounded"
+                >
+                  <option value="" disabled>
+                    Select a Phone Number
+                  </option>
+                  {phoneNumbers.map((number) => (
+                    <option key={number} value={number}>
+                      {number}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
         </div>
       ) : values?.agentType === "Audit" ? (
         <div>
@@ -537,30 +581,28 @@ const Step5 = ({
         </div>
       )}
       {/* support End */}
-     <div className="flex ">
-       <button
-        onClick={prevStep}
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-        >
-        Prev
-      </button>
-      {values?.agentType === "Audit" ? (
+      <div className="flex ">
         <button
-        onClick={handleSubmit}
-        // className="bg-white text-black font-medium rounded py-2 px-4"
-        className="bg-fuchsia-800 px-4 py-2 hover:scale-105  border-[0.5px] border-fuchsia-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+          onClick={prevStep}
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
         >
-          Deploy
+          Prev
         </button>
-      ) : (
-        <button
-        onClick={nextStep}
-        // className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
-       >
-          Next
-        </button>
-      )}
+        {values?.agentType === "Audit" ? (
+          <button
+            onClick={handleSubmit}
+            className="bg-fuchsia-800 px-4 py-2 hover:scale-105  border-[0.5px] border-fuchsia-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+          >
+            Deploy
+          </button>
+        ) : (
+          <button
+            onClick={nextStep}
+            className="bg-cardbackground px-4 py-2 hover:scale-105  border-[0.5px] border-gray-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+          >
+            Next
+          </button>
+        )}
       </div>
     </>
   );

@@ -13,6 +13,7 @@ export default function Step6({
   ]);
   const [input, setInput] = useState("");
   const [connectionStatus, setConnectionStatus] = useState("");
+  const [connectionStatusPhone, setConnectionPhoneStatus] = useState("");
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -51,6 +52,9 @@ export default function Step6({
   const handleConnection = () => {
     setConnectionStatus("Successfully connected");
   };
+  const handleConnectionPhone = () => {
+    setConnectionPhoneStatus("Successfully connected");
+  };
   return (
     <>
       <div className="w-full flex justify-between">
@@ -88,7 +92,7 @@ export default function Step6({
             <form className="flex-1" onSubmit={sendMessage}>
               <input
                 // className="flex h-10 rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full font-manrope text-gray-900"
-                         className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                className="rounded-md w-full border-none bg-gray-400 bg-opacity-50 px-6 py-2  text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                 id="message"
                 placeholder="Type your message..."
                 autoComplete="off"
@@ -121,18 +125,31 @@ export default function Step6({
             </button>
           </footer>
         </div>
-
-        <div className="w-[50%]">
-          <h2 className="text-2xl font-bold mb-6 text-center text-white">
-            Email
-          </h2>
-          <button
-            onClick={handleConnection}
-            className="bg-white text-black font-medium rounded py-2 px-4"
-          >
-            Check Connection
-          </button>
-          <p className="text-green-400 text-xl mt-2">{connectionStatus}</p>
+        <div className="w-[50%] flex flex-col" >
+          <div className="w-full h-[48%]">
+            <h2 className="text-2xl font-bold mb-6 text-center text-white">
+              Email
+            </h2>
+            <button
+              onClick={handleConnection}
+              className="bg-white text-black font-medium rounded py-2 px-4"
+            >
+              Check Connection
+            </button>
+            <p className="text-green-400 text-xl mt-2">{connectionStatus}</p>
+          </div>
+          <div className="w-full h-[48%]">
+            <h2 className="text-2xl font-bold mb-6 text-center text-white">
+              Phone
+            </h2>
+            <button
+              onClick={handleConnectionPhone}
+              className="bg-white text-black font-medium rounded py-2 px-4"
+            >
+              Check Connection
+            </button>
+            <p className="text-green-400 text-xl mt-2">{connectionStatusPhone}</p>
+          </div>
         </div>
       </div>
 
@@ -146,7 +163,7 @@ export default function Step6({
         <button
           onClick={handleSubmit}
           // className="bg-white text-black font-medium rounded py-2 px-4"
-         className="bg-fuchsia-800 px-4 py-2 hover:scale-105  border-[0.5px] border-fuchsia-700 rounded-md flex  justify-center items-center gap-2 text-lg"
+          className="bg-fuchsia-800 px-4 py-2 hover:scale-105  border-[0.5px] border-fuchsia-700 rounded-md flex  justify-center items-center gap-2 text-lg"
         >
           Deploy
         </button>
