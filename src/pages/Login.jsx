@@ -25,7 +25,7 @@ export default function Login() {
     login({ email: email, password })
       .then((res) => {
         console.log("res", res);
-        if (res?.user_email === email) {
+        if (res?.email === email) {
           localStorage.setItem("isAuthenticated", "true");
           localStorage.setItem("userDetails", JSON.stringify(res));
           navigate("/");
