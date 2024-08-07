@@ -34,7 +34,6 @@ export default function ManageAgent({ onDataChange }) {
 
   const handleModalClose = (response) => {
     setConfirmModalOpen(false);
-    console.log("emailData", emailData);
     // console.log("response", response);
 
     if (response === "yes") {

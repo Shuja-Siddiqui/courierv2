@@ -9,7 +9,7 @@ const AgentTable = ({ topHeading, data }) => {
       <div className="bg-gray-800 p-6 rounded-lg shadow-md">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-600 ">
-            <thead >
+            <thead>
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider font-manrope">
                   Agent Name
@@ -50,11 +50,29 @@ const AgentTable = ({ topHeading, data }) => {
                     {item?.kbType}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
-                    {item?.deployType.Website && "Website"}
-                    {item?.deployType.Email && " | " + "Email"}
-                    {!item?.deployType.Website && !item?.deployType.Email
-                      ? "Dashboard"
-                      : ""}
+                    {item?.deployType.Website &&
+                    !item?.deployType.Email &&
+                    !item?.deployType.Phone
+                      ? "Website"
+                      : item?.deployType.Email &&
+                        !item?.deployType.Website &&
+                        !item?.deployType.Phone
+                      ? "Email"
+                      : item?.deployType.Phone &&
+                        !item?.deployType.Website &&
+                        !item?.deployType.Email
+                      ? "Phone"
+                      : `${item?.deployType.Website ? "Website" : ""}${
+                          item?.deployType.Website && item?.deployType.Email
+                            ? " | "
+                            : ""
+                        }${item?.deployType.Email ? "Email" : ""}${
+                          (item?.deployType.Email && item?.deployType.Phone) ||
+                          (item?.deployType.Website && item?.deployType.Phone)
+                            ? " | "
+                            : ""
+                        }${item?.deployType.Phone ? "Phone" : ""}` ||
+                        "Dashboard"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-manrope">
                     {item?.externalModel !== "" ? item?.externalModel : "-"}
