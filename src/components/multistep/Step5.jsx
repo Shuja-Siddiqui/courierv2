@@ -22,7 +22,7 @@ const Step5 = ({
   const [websiteTechnology, setWebsiteTechnology] = useState("React");
 
   const [phoneNumbers, setPhoneNumbers] = useState([
-    "14159939685",
+    "+14159939685",
     
   ]);
   const [selectedPhoneNumber, setSelectedPhoneNumber] = useState("");
@@ -126,7 +126,7 @@ const Step5 = ({
 
     input.value = '';
 
-    const response = await fetch('https://srv572320.hstgr.cloud:3100/courier-chat-bot', {
+    const response = await fetch('https://srv572320.hstgr.cloud:3100/chats/ask-query', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
