@@ -38,12 +38,13 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
       body: "Connect the support agent with your knowledge base, and integrate the chatbot on your website, email, or dashboard for seamless support.",
       actions: [
         "Retrieves information from PDFs, databases, and CSV files to generate accurate responses.",
-        "Integrates with your website, email, and dashboard for easy deployment.",
+        "Integrates with your website, email, phone and dashboard for easy deployment.",
         "Uses pre-built prompts to execute tasks and respond to customer queries.",
         "Tracks orders and provides a comprehensive analysis of the workflow.",
         "Connects to the knowledge base for on-brand, on-policy responses.",
         "Searches TMS to get the latest order information.",
         "Updates TMS with new address or instructions and sends updates to driver apps.",
+
       ],
       button: "Select",
     },

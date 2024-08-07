@@ -157,16 +157,18 @@ export default function InboundTable() {
               &times;
             </button>
             <div>
-              <h3 className="text-lg leading-6 font-medium text-white mb-4">
+              <h3 className="text-xl leading-6 font-medium text-center text-white mb-2">
                 Call Transcript
               </h3>
-              <div className="space-y-2">
+              <hr />
+              <div className="space-y-2 mt-4">
                 {currentTranscript.map((line, index) => (
-                  <p key={index} className="text-sm text-gray-500">
+                  <p key={index} className="text-lg text-gray-200">
                     <strong>{line.speaker}:</strong> {line.text}
                   </p>
                 ))}
               </div>
+              
             </div>
             
           </div>

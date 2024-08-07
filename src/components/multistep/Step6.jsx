@@ -24,7 +24,7 @@ export default function Step6({
 
     try {
       const response = await axios.post(
-        "https://srv572320.hstgr.cloud:3100/courier-chat-bot",
+        "https://srv572320.hstgr.cloud:3100/chats/ask-query",
         {
           question: input,
           session_id: "1212121212",
